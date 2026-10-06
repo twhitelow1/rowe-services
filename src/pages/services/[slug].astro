@@ -1,0 +1,155 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LeadSurvey from '../../components/LeadSurvey.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import TownChips from '../../components/TownChips.astro';
+import ReviewCard from '../../components/ReviewCard.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { services, type Service } from '../../data/services';
+import { site, telHref } from '../../data/site';
+import { allPosts, postsForService, fmtDate } from '../../lib/blog';
+import { webPage, faqPage, breadcrumbs, serviceSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: Service };
+const path = `/services/${s.slug}`;
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Services', path: '/services' }, { name: s.name, path }];
+const posts = postsForService(await allPosts(), s.slug).slice(0, 3);
+const schema = [webPage(path, s.title, s.description), breadcrumbs(crumbs), serviceSchema(s), faqPage(s.faqs, path)];
+---
+<Base title={s.title} description={s.description} path={path} schema={schema}>
+  <section class="page-hero split">
+    <div class="wrap">
+      <div>
+        <Breadcrumbs items={crumbs} />
+        <span class="eyebrow" style="color:#f0a868">{s.name} · Central Florida</span>
+        <h1>{s.h1}</h1>
+        <p class="lede">{s.answer}</p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-lg" href="#quote">Get my free quote <Icon name="arrow" /></a>
+          <a class="btn btn-ghost-light btn-lg" href={telHref}><Icon name="phone" />{site.phone}</a>
+        </div>
+      </div>
+      <LeadSurvey heading={`Free ${s.short.toLowerCase()} quote`} />
+    </div>
+  </section>
+
+  <div class="wrap facts-wrap">
+    <dl class="facts">
+      {s.facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+    </dl>
+  </div>
+
+  <section class="section">
+    <div class="wrap content-grid">
+      <article class="prose">
+        <nav class="toc" aria-label="On this page">
+          <strong>On this page</strong>
+          <ul>
+            <li><a href="#signs">Signs</a></li>
+            <li><a href="#what-we-do">What we do</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#included">What's included</a></li>
+            <li><a href="#pricing">Pricing factors</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        {s.intro.map((p) => <p>{p}</p>)}
+
+        <h2 id="signs">{s.signsHeading}</h2>
+        <ul class="checklist warnlist">{s.signs.map((x) => <li><Icon name="alert" />{x}</li>)}</ul>
+
+        <h2 id="what-we-do">{s.name} services we offer</h2>
+        <div class="offer-grid">
+          {s.offerings.map((o) => <div class="offer"><h3>{o.title}</h3><p>{o.text}</p></div>)}
+        </div>
+
+        <h2>Why homeowners choose Rowe for {s.short.toLowerCase()}</h2>
+        <ul class="checklist two-col-list" style="display:grid">
+          {s.benefits.map((b) => <li><Icon name="check-circle" /><span><strong>{b.title}.</strong> {b.text}</span></li>)}
+        </ul>
+
+        <h2 id="included">What's included</h2>
+        <ul class="checklist">{s.includes.map((x) => <li><Icon name="check" />{x}</li>)}</ul>
+
+        <h2 id="pricing">What affects the price</h2>
+        <p>Every home is different, so I quote on site instead of guessing over the phone. These are the things that move the number:</p>
+        <div class="table-scroll">
+          <table class="data">
+            <thead><tr><th scope="col">Factor</th><th scope="col">Why it matters</th></tr></thead>
+            <tbody>{s.pricing.map((p) => <tr><th scope="row">{p.factor}</th><td>{p.why}</td></tr>)}</tbody>
+          </table>
+        </div>
+        <p class="note mt-2">Quotes are free, written and no-obligation.</p>
+      </article>
+      <aside>
+        <div class="card">
+          <h3>Backed for 15 years</h3>
+          <p>Report a leak down the road and we come back out — even if it turns out it wasn't our fault.</p>
+          <a class="btn btn-primary btn-block" href="#quote">Get my free quote</a>
+          <a class="btn btn-outline btn-block" style="margin-top:.6rem" href={telHref}><Icon name="phone" />{site.phone}</a>
+        </div>
+        <div class="side-box">
+          <h3>Other services</h3>
+          <ul>{services.filter((o) => o.slug !== s.slug).map((o) => <li><a href={`/services/${o.slug}`}>{o.name}</a></li>)}</ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section sky" id="process">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">How it works</span><h2>Our {s.short.toLowerCase()} process</h2></div>
+      <ol class="steps">{s.process.map((p) => <li><h3>{p.title}</h3><p>{p.text}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">Where we work</span>
+        <h2>{s.name} across Lake, Marion, Sumter & Orange County</h2>
+        <p>We install and repair {s.short.toLowerCase()} for homeowners throughout The Villages and the surrounding towns. Pick yours for local details:</p>
+        <TownChips />
+      </div>
+      <ReviewCard {...site.reviews[0]} />
+    </div>
+  </section>
+
+  <section class="section sand">
+    <div class="wrap narrow">
+      <Faq faqs={s.faqs} heading={`${s.name} FAQ`} />
+      <p class="updated">Reviewed by {site.owner.name}, owner · Updated {fmtDate(new Date(site.lastReviewed))}</p>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Learn more</span><h2>{s.short} articles</h2></div>
+        <div class="post-grid">
+          {posts.map((p) => (
+            <article class="post-card">
+              <h3><a href={`/blogs/${p.id}`}>{p.data.title}</a></h3>
+              <p>{p.data.description}</p>
+              <time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section sky">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Related</span><h2>Other exterior services</h2></div>
+      <ServiceCards exclude={s.slug} />
+    </div>
+  </section>
+  <CtaBand />
+</Base>

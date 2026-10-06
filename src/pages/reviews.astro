@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+import { webPage, breadcrumbs } from '../lib/schema';
+
+const path = '/reviews';
+const title = 'Rowe Services Reviews | Seamless Gutters & Exterior Services';
+const description = 'Read what Central Florida homeowners say about Rowe Services & Maintenance — seamless gutters, soffit, siding and screen enclosures, owner-quoted since 2013.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Reviews', path }];
+const schema = [webPage(path, title, description), breadcrumbs(crumbs)];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      <h1>Reviews from Central Florida homeowners</h1>
+      <p class="lede">Every job is quoted, managed and followed up by the owner — and it shows in what customers say.</p>
+    </div>
+  </section>
+  <section class="section sand">
+    <div class="wrap grid grid-2">
+      {site.reviews.map((r) => <ReviewCard {...r} />)}
+      <div class="card">
+        <h2 style="font-size:1.4rem">Worked with us?</h2>
+        <p>A short review helps your neighbors find an honest contractor. It means a lot to a small, owner-operated business.</p>
+        <div class="btn-row">
+          {site.gbp.reviewUrl && <a class="btn btn-primary" href={site.gbp.reviewUrl} rel="noopener">Leave a Google review</a>}
+          <a class="btn btn-outline" href={site.facebook} rel="noopener"><Icon name="facebook" />Review us on Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

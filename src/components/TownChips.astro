@@ -1,0 +1,8 @@
+---
+import { locations } from '../data/locations';
+interface Props { exclude?: string }
+const { exclude } = Astro.props;
+---
+<ul class="chips">
+  {locations.filter((l) => l.slug !== exclude).map((l) => <li><a href={`/service-areas/${l.slug}`}>{l.town}</a></li>)}
+</ul>

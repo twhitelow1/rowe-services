@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import LeadSurvey from '../components/LeadSurvey.astro';
+import Faq from '../components/Faq.astro';
+import { site, telHref } from '../data/site';
+import { webPage, breadcrumbs, faqPage } from '../lib/schema';
+
+const path = '/free-gutter-inspection';
+const title = 'Free Gutter & Drainage Inspection | Central FL | Rowe Services';
+const description = 'Book a free gutter and drainage inspection in The Villages and Lake, Marion & Sumter County. The owner checks slope, leaks, fascia and downspouts. No pressure.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Free Gutter Inspection', path }];
+const checks = [
+  'Gutter slope and standing water',
+  'Leaking seams, corners and end caps',
+  'Hangers, sagging runs and attachment to the fascia',
+  'Soft or rotting fascia and soffit',
+  'Downspout size, placement and where the water goes',
+  'Erosion, puddling or staining near the foundation',
+  'Whether gutter guards make sense for your trees',
+];
+const faqs = [
+  { q: 'Is the gutter inspection really free?', a: 'Yes. There is no charge and no obligation. If everything looks good, I will tell you that.' },
+  { q: 'Who does the inspection?', a: `${site.owner.name}, the owner. You won't get a sales rep.` },
+  { q: 'Do I have to be home?', a: "It helps, so I can show you what I find and answer questions, but we can work around your schedule." },
+  { q: 'What if you find a problem?', a: 'I explain what is going on, what it would take to fix, and give you a clear written price. Whether to go ahead is entirely up to you.' },
+];
+const schema = [webPage(path, title, description), breadcrumbs(crumbs), faqPage(faqs, path)];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <section class="page-hero split">
+    <div class="wrap">
+      <div>
+        <Breadcrumbs items={crumbs} />
+        <span class="eyebrow" style="color:#f0a868">Free · No obligation</span>
+        <h1>Free gutter & drainage inspection</h1>
+        <p class="lede">Before the next storm, have the owner check how your home handles water. I'll walk the roofline and drainage with you and tell you straight what — if anything — needs attention.</p>
+        <ul class="hero-checks">{checks.map((c) => <li><Icon name="check-circle" />{c}</li>)}</ul>
+        <a class="btn btn-ghost-light btn-lg" href={telHref}><Icon name="phone" />Or call {site.phone}</a>
+      </div>
+      <LeadSurvey heading="Book my free inspection" sub="Fill this out and I'll call you back personally to set a time." />
+    </div>
+  </section>
+  <section class="section"><div class="wrap narrow"><Faq faqs={faqs} heading="Free inspection FAQ" /></div></section>
+</Base>

@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import TownChips from '../../components/TownChips.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { services } from '../../data/services';
+import { quoteHref } from '../../data/site';
+import { webPage, faqPage, breadcrumbs } from '../../lib/schema';
+
+const path = '/services';
+const title = 'Exterior Home Services in Central Florida | Rowe Services';
+const description = 'Seamless gutters, soffit & fascia, vinyl siding and screen enclosures for The Villages & Central Florida homes. Owner-quoted, 15-year warranty. Free quote.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Services', path }];
+const faqs = [
+  { q: 'Which exterior service should I start with first?', a: 'If you have water problems, start with gutters and drainage. If you see roof-edge deterioration, prioritize soffit and fascia. For appearance upgrades, siding and enclosures usually make the biggest visual difference.' },
+  { q: 'Do you offer repairs, or only full replacement?', a: "Both. If a repair can restore performance safely and cost-effectively, I'll recommend it. If materials are near the end of their life, replacement may save money long-term." },
+  { q: 'How do I know if my gutters are causing water damage?', a: 'Overflow, staining, eroded soil lines and fascia rot are common clues. We inspect slope, attachment, downspout routing and blockage points to confirm.' },
+  { q: 'Can soffit and fascia problems affect my gutters?', a: 'Yes. Gutters rely on solid attachment points. Weak or rotting fascia causes sagging, poor drainage and repeat failures.' },
+  { q: 'How long do these projects take?', a: 'Most gutter jobs are done in a day; siding and enclosures vary by size and complexity. After the site visit you get a clear timeline.' },
+];
+const schema = [webPage(path, title, description, 'CollectionPage'), breadcrumbs(crumbs), faqPage(faqs, path)];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      <h1>Exterior home services in Central Florida</h1>
+      <p class="lede">Your home's exterior takes the brunt of Florida weather — heavy rain, intense sun, humidity and wind. Rowe Services & Maintenance installs and repairs {services.map((s) => s.name.toLowerCase()).join(', ').replace(/, ([^,]*)$/, ' and $1')} for homes in The Villages and across Lake, Marion, Sumter and Orange County — practical, durable and cleanly installed.</p>
+      <div class="btn-row"><a class="btn btn-primary btn-lg" href={quoteHref}>Get my free quote <Icon name="arrow" /></a></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <ServiceCards />
+    </div>
+  </section>
+  <section class="section sky">
+    <div class="wrap">
+      <div class="section-head"><h2>Compare our services</h2></div>
+      <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th scope="col">Service</th><th scope="col">Key detail</th><th scope="col">Options</th></tr></thead>
+          <tbody>
+            {services.map((s) => <tr><th scope="row"><a href={`/services/${s.slug}`}>{s.name}</a></th><td>{s.facts[0].value}</td><td>{s.offerings.map((o) => o.title).join(', ')}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+      <h2 class="mt-2">Towns we serve</h2>
+      <TownChips />
+    </div>
+  </section>
+  <section class="section"><div class="wrap narrow"><Faq faqs={faqs} heading="Home exterior services FAQ" /></div></section>
+  <CtaBand />
+</Base>

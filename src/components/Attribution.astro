@@ -1,0 +1,85 @@
+---
+// First-party lead attribution. Records where a visitor came from (UTMs, ad click IDs,
+// organic search, AI assistants, social, referral, direct), keeps first and latest touch
+// in localStorage for 90 days, pushes it to the dataLayer for GTM/GA4, and appends it to
+// GoHighLevel form/booking iframes and links so every lead carries its source.
+// GHL hidden fields pick these up when their "query key" matches the parameter name.
+const bookingHost = '';
+---
+<script is:inline define:vars={{ bookingHost }}>
+(function () {
+  var KEY = 'rowe_attr', TTL = 90 * 864e5, now = Date.now();
+  var q = new URLSearchParams(location.search);
+  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+  var CLICK = ['gclid', 'gbraid', 'wbraid', 'msclkid', 'fbclid', 'ttclid', 'li_fat_id'];
+  var ref = '';
+  try { var r = document.referrer && new URL(document.referrer); if (r && r.host !== location.host) ref = r.host.replace(/^www\./, ''); } catch (e) {}
+
+  var SEARCH = /(^|\.)(google\.[a-z.]+|bing\.com|duckduckgo\.com|search\.yahoo\.com|yahoo\.com|ecosia\.org|search\.brave\.com|startpage\.com)$/;
+  var AI = /(^|\.)(chatgpt\.com|chat\.openai\.com|perplexity\.ai|copilot\.microsoft\.com|gemini\.google\.com|claude\.ai|you\.com|meta\.ai)$/;
+  var SOCIAL = /(^|\.)(facebook\.com|instagram\.com|linkedin\.com|lnkd\.in|tiktok\.com|x\.com|t\.co|twitter\.com|youtube\.com|pinterest\.com|reddit\.com|nextdoor\.com)$/;
+
+  var t = {};
+  UTM.concat(CLICK).forEach(function (k) { var v = q.get(k); if (v) t[k] = v.slice(0, 150); });
+  var med = (t.utm_medium || '').toLowerCase();
+  var channel =
+    t.gclid || t.gbraid || t.wbraid || t.msclkid || /^(cpc|ppc|paid|paidsearch|paid_search)$/.test(med) ? 'paid_search' :
+    t.fbclid || t.ttclid || t.li_fat_id || /^(paid_social|paidsocial|social_paid)$/.test(med) ? 'paid_social' :
+    /^(email|newsletter)$/.test(med) ? 'email' :
+    med === 'organic' ? 'organic_search' :
+    med === 'social' ? 'organic_social' :
+    t.utm_source ? 'campaign' :
+    AI.test(ref) ? 'ai_assistant' :
+    SEARCH.test(ref) ? 'organic_search' :
+    SOCIAL.test(ref) ? 'organic_social' :
+    ref ? 'referral' : 'direct';
+  t.channel = channel;
+  if (ref) t.referrer = ref;
+  if (!t.utm_source && ref) { t.utm_source = ref; t.utm_medium = channel === 'organic_search' ? 'organic' : channel; }
+  t.landing_page = location.pathname;
+  t.ts = now;
+
+  var s = {};
+  try { s = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  if (!s.first || now - s.first.ts > TTL) s.first = t;
+  // Direct visits never overwrite a known source as the latest touch.
+  if (channel !== 'direct' || !s.last || now - s.last.ts > TTL) s.last = t;
+  try { localStorage.setItem(KEY, JSON.stringify(s)); } catch (e) {}
+
+  var f = s.first, l = s.last;
+  window.roweAttribution = s;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'attribution_ready',
+    first_channel: f.channel, first_source: f.utm_source || '', first_medium: f.utm_medium || '', first_campaign: f.utm_campaign || '', first_landing_page: f.landing_page,
+    last_channel: l.channel, last_source: l.utm_source || '', last_medium: l.utm_medium || '', last_campaign: l.utm_campaign || '',
+  });
+
+  // Parameters handed to GHL: latest touch for UTMs/click IDs, plus first-touch context.
+  var params = {};
+  UTM.concat(CLICK).forEach(function (k) { if (l[k]) params[k] = l[k]; });
+  params.lead_channel = l.channel;
+  params.first_channel = f.channel;
+  params.first_source = f.utm_source || '';
+  params.landing_page = f.landing_page;
+  if (f.referrer) params.referrer = f.referrer;
+
+  var GHL = /(leadconnectorhq\.com|msgsndr\.com|gohighlevel\.com|leadalchemist)/;
+  function decorate(url) {
+    try {
+      var u = new URL(url, location.href);
+      Object.keys(params).forEach(function (k) { if (params[k] && !u.searchParams.has(k)) u.searchParams.set(k, params[k]); });
+      return u.toString();
+    } catch (e) { return url; }
+  }
+  function isTarget(url, el) {
+    if (el.hasAttribute('data-attribution')) return true;
+    try { var h = new URL(url, location.href).host; return h !== location.host && (GHL.test(h) || (bookingHost && h === bookingHost)); } catch (e) { return false; }
+  }
+  function run() {
+    document.querySelectorAll('iframe[src]').forEach(function (el) { var src = el.getAttribute('src'); if (isTarget(src, el)) el.setAttribute('src', decorate(src)); });
+    document.querySelectorAll('a[href]').forEach(function (el) { var h = el.getAttribute('href'); if (/^https?:/.test(h) && isTarget(h, el)) el.setAttribute('href', decorate(h)); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script>

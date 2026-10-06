@@ -1,0 +1,77 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LeadSurvey from '../../components/LeadSurvey.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { serviceBySlug } from '../../data/services';
+import { site, telHref } from '../../data/site';
+import { allPosts, townsOf, fmtDate, type Post } from '../../lib/blog';
+import { webPage, breadcrumbs, article } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await allPosts();
+  return posts.map((p) => ({ params: { slug: p.id }, props: { p, posts } }));
+}
+const { p, posts } = Astro.props as { p: Post; posts: Post[] };
+const { Content } = await render(p);
+const path = `/blogs/${p.id}`;
+const title = p.data.seoTitle ?? (p.data.title.length > 48 ? p.data.title : `${p.data.title} | Rowe Services`);
+const svc = p.data.service ? serviceBySlug(p.data.service) : undefined;
+const towns = townsOf(p);
+const related = posts.filter((o) => o.id !== p.id && o.data.service === p.data.service).slice(0, 3);
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blogs' }, { name: p.data.title, path }];
+const schema = [webPage(path, p.data.title, p.data.description), breadcrumbs(crumbs), article({ slug: p.id, ...p.data })];
+---
+<Base title={title} description={p.data.description} path={path} schema={schema} ogType="article">
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      {svc && <span class="eyebrow" style="color:#f0a868">{svc.name}</span>}
+      <h1 style="max-width:28ch">{p.data.title}</h1>
+      <p class="byline"><span>By <strong>{site.owner.name}</strong>, owner of {site.name}</span><time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time></p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap content-grid">
+      <article class="prose narrow">
+        <Content />
+        <div class="card mt-2">
+          <h2 style="font-size:1.35rem">Want me to take a look?</h2>
+          <p>I'm Justin Rowe. I'll walk your property, tell you straight what's going on, and give you an honest, no-obligation price. Every install is backed for 15 years.</p>
+          <div class="btn-row"><a class="btn btn-primary" href="#quote">Get my free quote</a><a class="btn btn-outline" href={telHref}><Icon name="phone" />{site.phone}</a></div>
+        </div>
+      </article>
+      <aside>
+        <LeadSurvey compact heading="Free quote" />
+        {(svc || towns.length > 0) && (
+          <div class="side-box">
+            <h3>Related</h3>
+            <ul>
+              {svc && <li><a href={`/services/${svc.slug}`}>{svc.name} service</a></li>}
+              {towns.map((t) => <li><a href={`/service-areas/${t.slug}`}>Gutters & exteriors in {t.town}</a></li>)}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+  {related.length > 0 && (
+    <section class="section sky">
+      <div class="wrap">
+        <div class="section-head"><h2>Keep reading</h2></div>
+        <div class="post-grid">
+          {related.map((r) => (
+            <article class="post-card">
+              <h3><a href={`/blogs/${r.id}`}>{r.data.title}</a></h3>
+              <p>{r.data.description}</p>
+              <time datetime={r.data.pubDate.toISOString()}>{fmtDate(r.data.pubDate)}</time>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+  <CtaBand />
+</Base>

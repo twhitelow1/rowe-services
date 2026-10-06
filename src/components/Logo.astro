@@ -1,0 +1,14 @@
+---
+// Wordmark logo (inline SVG). TODO: replace with the official Rowe Services logo file when supplied.
+interface Props { light?: boolean }
+const { light = false } = Astro.props;
+---
+<svg class="logo" viewBox="0 0 230 52" role="img" aria-label="Rowe Services & Maintenance">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 22 24 6l20 16" stroke={light ? '#fff' : 'var(--navy)'} stroke-width="4.5" />
+    <path d="M2 26h44v4.5a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z" fill="var(--copper)" stroke="none" />
+    <path d="M39 34.5V46" stroke="var(--copper)" stroke-width="4.5" />
+  </g>
+  <text x="56" y="28" font-family="var(--font)" font-weight="850" font-size="27" letter-spacing="1.5" fill={light ? '#fff' : 'var(--navy)'}>ROWE</text>
+  <text x="57" y="45" font-family="var(--font)" font-weight="650" font-size="10.4" letter-spacing="1.6" fill={light ? 'rgba(255,255,255,.8)' : 'var(--steel)'}>SERVICES &amp; MAINTENANCE</text>
+</svg>

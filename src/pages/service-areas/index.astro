@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { locations } from '../../data/locations';
+import { services } from '../../data/services';
+import { site, quoteHref } from '../../data/site';
+import { webPage, breadcrumbs } from '../../lib/schema';
+
+const path = '/service-areas';
+const title = 'Service Areas: The Villages, Lake & Marion County | Rowe';
+const description = 'Rowe Services installs seamless gutters, soffit, siding and screen enclosures in The Villages, Lady Lake, Leesburg, Mount Dora, Wildwood and more.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Service Areas', path }];
+const schema = [webPage(path, title, description, 'CollectionPage'), breadcrumbs(crumbs)];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      <h1>Service areas across Central Florida</h1>
+      <p class="lede">Rowe Services & Maintenance is based in {site.address.locality}, FL and serves homeowners throughout Lake, Marion and Sumter County — including The Villages — plus the greater Orlando area in Orange County.</p>
+      <a class="btn btn-primary btn-lg" href={quoteHref}>Get my free quote <Icon name="arrow" /></a>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <div class="table-scroll">
+        <table class="data">
+          <thead><tr><th scope="col">Town</th><th scope="col">County</th><th scope="col">ZIP codes</th><th scope="col">Common project</th></tr></thead>
+          <tbody>
+            {locations.map((l) => {
+              const top = services.find((s) => s.slug === l.services[0])!;
+              return <tr><th scope="row"><a href={`/service-areas/${l.slug}`}>{l.town}, FL</a></th><td>{l.county}</td><td>{l.zips.join(', ')}</td><td><a href={`/services/${top.slug}`}>{top.name}</a></td></tr>;
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p class="note mt-2">Don't see your town? We also work in Orange County and the greater Orlando area. <a href="/contact-us">Ask about your address</a>.</p>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

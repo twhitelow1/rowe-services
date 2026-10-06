@@ -1,0 +1,105 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import LeadSurvey from '../../components/LeadSurvey.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
+import ReviewCard from '../../components/ReviewCard.astro';
+import Faq from '../../components/Faq.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { locations, locationBySlug, type Location } from '../../data/locations';
+import { site, telHref } from '../../data/site';
+import { allPosts, postsForTown, fmtDate } from '../../lib/blog';
+import { webPage, faqPage, breadcrumbs, localServiceSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return locations.map((l) => ({ params: { slug: l.slug }, props: { l } }));
+}
+const { l } = Astro.props as { l: Location };
+const path = `/service-areas/${l.slug}`;
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Service Areas', path: '/service-areas' }, { name: `${l.town}, FL`, path }];
+const posts = postsForTown(await allPosts(), l.slug).slice(0, 3);
+const nearby = l.nearby.map(locationBySlug).filter(Boolean) as Location[];
+const schema = [webPage(path, l.title, l.description), breadcrumbs(crumbs), localServiceSchema(l), faqPage(l.faqs, path)];
+---
+<Base title={l.title} description={l.description} path={path} schema={schema}>
+  <section class="page-hero split">
+    <div class="wrap">
+      <div>
+        <Breadcrumbs items={crumbs} />
+        <span class="eyebrow" style="color:#f0a868">{l.county} County · ZIP {l.zips.join(', ')}</span>
+        <h1>Seamless gutters & exterior services in {l.town}, FL</h1>
+        <p class="lede">{l.answer}</p>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-lg" href="#quote">Get my free quote <Icon name="arrow" /></a>
+          <a class="btn btn-ghost-light btn-lg" href={telHref}><Icon name="phone" />{site.phone}</a>
+        </div>
+      </div>
+      <LeadSurvey heading={`Free quote in ${l.town}`} />
+    </div>
+  </section>
+
+  <div class="wrap facts-wrap">
+    <dl class="facts">
+      <div><dt>County</dt><dd>{l.county} County, FL</dd></div>
+      <div><dt>ZIP codes</dt><dd>{l.zips.join(', ')}</dd></div>
+      <div><dt>Warranty</dt><dd>15 years on installs</dd></div>
+      <div><dt>Quoted by</dt><dd>{site.owner.name}, owner</dd></div>
+    </dl>
+  </div>
+
+  <section class="section">
+    <div class="wrap content-grid">
+      <article class="prose">
+        <h2>Exterior work for {l.town} homes</h2>
+        {l.local.map((p) => <p>{p}</p>)}
+        <h2>What we see most in {l.town}</h2>
+        <ul class="checklist warnlist">{l.watchFor.map((x) => <li><Icon name="alert" />{x}</li>)}</ul>
+        <h2>What every {l.town} customer gets</h2>
+        <ul class="checklist">
+          {site.usps.map((u) => <li><Icon name="check-circle" /><span><strong>{u.title}.</strong> {u.text}</span></li>)}
+        </ul>
+      </article>
+      <aside>
+        <ReviewCard {...site.reviews[0]} />
+        <div class="side-box">
+          <h3>Nearby towns we serve</h3>
+          <ul>{nearby.map((n) => <li><a href={`/service-areas/${n.slug}`}>Gutters & exteriors in {n.town}</a></li>)}</ul>
+          <p class="mt-2 mb-0"><a href="/service-areas">All service areas</a></p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section sky">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Services in {l.town}</span><h2>What we do for {l.town} homeowners</h2></div>
+      <ServiceCards order={l.services} town={l.town} />
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Local know-how</span><h2>Articles for {l.town} homeowners</h2></div>
+        <div class="post-grid">
+          {posts.map((p) => (
+            <article class="post-card">
+              <h3><a href={`/blogs/${p.id}`}>{p.data.title}</a></h3>
+              <p>{p.data.description}</p>
+              <time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section sand">
+    <div class="wrap narrow">
+      <Faq faqs={l.faqs} heading={`${l.town} FAQ`} />
+      <p class="updated">Reviewed by {site.owner.name}, owner · Updated {fmtDate(new Date(site.lastReviewed))}</p>
+    </div>
+  </section>
+  <CtaBand heading={`Get a straight answer for your ${l.town} home`} />
+</Base>

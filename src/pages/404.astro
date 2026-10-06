@@ -1,0 +1,9 @@
+---
+import Base from '../layouts/Base.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { site, telHref } from '../data/site';
+---
+<Base title="Page not found | Rowe Services & Maintenance" description="This page has moved. Find seamless gutters, soffit & fascia, vinyl siding and screen enclosure services from Rowe Services & Maintenance." path="/404" noindex>
+  <section class="page-hero"><div class="wrap"><h1>That page has moved</h1><p class="lede">Our site was rebuilt. Try one of the services below, or call <a href={telHref} style="color:#fff">{site.phone}</a>.</p><a class="btn btn-primary" href="/">Go to the homepage</a></div></section>
+  <section class="section"><div class="wrap"><ServiceCards /></div></section>
+</Base>

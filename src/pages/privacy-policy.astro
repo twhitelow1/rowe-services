@@ -1,0 +1,16 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { webPage, breadcrumbs } from '../lib/schema';
+const entry = (await getEntry('pages', 'privacy-policy'))!;
+const { Content } = await render(entry);
+const path = '/privacy-policy';
+const title = 'Privacy Policy | Rowe Services & Maintenance';
+const description = 'How Rowe Services & Maintenance, LLC collects, uses and protects information submitted through rowe-services.com forms, quote requests and SMS messages.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Privacy Policy', path }];
+---
+<Base title={title} description={description} path={path} schema={[webPage(path, title, description), breadcrumbs(crumbs)]}>
+  <section class="page-hero"><div class="wrap"><Breadcrumbs items={crumbs} /><h1>Privacy policy</h1></div></section>
+  <section class="section"><div class="wrap prose narrow"><Content /></div></section>
+</Base>
