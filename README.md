@@ -6,6 +6,25 @@ Rebuild of rowe-services.com (previously WordPress) as a fast, static Astro site
 - **Commands:** `npm install` · `npm run dev` · `npm run build` (static build to `dist/`)
 - **Preview bundle:** `npm run build && python3 tools/preview_bundle.py dist preview.html`
 
+## Testing & CI/CD
+Every push and PR runs `.github/workflows/ci.yml` (GitHub Actions). Vercel deploys a preview for every branch/PR and production from `main`.
+
+| Command | What it checks |
+|---|---|
+| `npm run check` | TypeScript / Astro type check |
+| `npm run test:unit` | Content data: slugs, cross-references, FAQ counts, SEO field lengths, no invented prices, unique town copy |
+| `npm run test:build` | Built site: all legacy URLs, one H1, unique titles/descriptions, canonicals, JSON-LD, internal links, orphans, redirects, sitemap/llms/rss, noindex gating, conversion elements |
+| ↳ `tests/ai-visibility.test.mjs` | AI visibility (GEO): complete business entity, linked Person/Service/BlogPosting/FAQ/ItemList schema, freshness + reviewer, answer-first intros, quick facts, tables, quotable FAQs, AI-crawler access, llms.txt. Portable to other DubLow sites via its `CONFIG` block |
+| `npm run test:seo` | DubLow SEO audit (`tools/seo_audit.py`) |
+| `npm run test:prod` | Production build (`PUBLIC_SITE_INDEXABLE=true`): indexable pages, AI crawlers allowed |
+| `npm run test:e2e` | Playwright, desktop + mobile: renders, no overflow, quote card, menus, FAQ, 404, assets, a11y names |
+| `npm run ci` | All of the above, in CI order |
+
+Locally, set `PW_CHROMIUM=/path/to/chrome` to use an existing Chromium instead of `npx playwright install`.
+
+## Logo & icons
+The official Rowe Service's logo is rebuilt as vector paths in `src/data/logo.ts` (ring + R mark traced from the official file; wordmark outlined from Saira Semi Condensed SemiBold). `Logo.astro` renders it inline (`horizontal` in the header, `stacked` in the footer, `mark` for the icon). `npm run icons` regenerates `favicon.svg` (the R mark), `favicon-48.png`, `apple-touch-icon.png`, `logo.png` and `og-default.png`.
+
 ## Where things live
 | What | File |
 |---|---|
@@ -32,7 +51,7 @@ Rebuild of rowe-services.com (previously WordPress) as a fast, static Astro site
 3. **Email** — `team@roweservices.com` (no hyphen) vs. the `rowe-services.com` domain. Confirm it receives mail.
 4. **Google Business Profile** URL + review link → `site.gbp` in `site.ts`.
 5. **More verbatim Google reviews** → `site.reviews`.
-6. **Logo** — an SVG wordmark stands in; drop the official logo file in and swap `Logo.astro`.
+6. **Logo** — rebuilt from the official PNG. If Rowe has the original vector (SVG/AI/EPS), compare and replace the paths in `src/data/logo.ts`.
 7. **Project photos** — the old gallery images couldn't be migrated. Add real before/after photos.
 8. **Photo of Justin** for `/about`.
 9. **Tracking** — GTM / GA4 / Clarity IDs in `site.tracking`.
@@ -40,4 +59,5 @@ Rebuild of rowe-services.com (previously WordPress) as a fast, static Astro site
 11. Florida contractor license number, if Rowe wants it shown.
 
 ## Build log
+- 2026-10-08 — Added CI (GitHub Actions) with unit, build, AI-visibility, SEO-audit, production and Playwright tests. Official logo + R favicon. Extra schema: contactPoint, ItemList hubs, AboutPage→Person, BlogPosting about/mentions. 4th FAQ on every town page.
 - 2026-10-06 — Full rebuild. Scaffolded from the DubLow reference architecture (vail-valley-it). Migrated 26 blog posts + privacy policy. Wrote 4 service pages, 14 town pages, about, reviews, contact, free-inspection landing page. SEO audit: 0 issues across 55 pages. Desktop (1280) + mobile (390) screenshots checked; no horizontal overflow.

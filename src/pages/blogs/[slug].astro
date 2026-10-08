@@ -22,7 +22,7 @@ const svc = p.data.service ? serviceBySlug(p.data.service) : undefined;
 const towns = townsOf(p);
 const related = posts.filter((o) => o.id !== p.id && o.data.service === p.data.service).slice(0, 3);
 const crumbs = [{ name: 'Home', path: '/' }, { name: 'Blog', path: '/blogs' }, { name: p.data.title, path }];
-const schema = [webPage(path, p.data.title, p.data.description), breadcrumbs(crumbs), article({ slug: p.id, ...p.data })];
+const schema = [webPage(path, p.data.title, p.data.description), breadcrumbs(crumbs), article({ slug: p.id, ...p.data, towns })];
 ---
 <Base title={title} description={p.data.description} path={path} schema={schema} ogType="article">
   <section class="page-hero">

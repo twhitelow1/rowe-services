@@ -24,13 +24,14 @@ export function organization() {
     '@id': ORG_ID,
     name: site.name,
     legalName: site.legalName,
-    alternateName: ['Rowe Services', 'Rowe Services and Maintenance LLC'],
-    slogan: 'Owner-operated seamless gutters and exterior services, backed for 15 years',
+    alternateName: ["Rowe Service's", 'Rowe Services', 'Rowe Services and Maintenance LLC'],
+    slogan: 'Seamless Gutters & More',
     description: `Rowe Services & Maintenance is an owner-operated exterior contractor based in Grand Island, Florida, founded in ${site.founded} by Justin Rowe. It installs 6-inch seamless aluminum K-style gutters and gutter guards, soffit and fascia, vinyl siding and skirting, and screen porches and enclosures for homes in The Villages and across Lake, Marion, Sumter and Orange County, with a 15-year warranty on installs.`,
     url: `${U}/`,
-    logo: `${U}/logo.png`,
+    logo: { '@type': 'ImageObject', url: `${U}/logo.png`, width: 512, height: 512 },
     image: `${U}/og-default.png`,
     telephone: site.phoneE164,
+    contactPoint: { '@type': 'ContactPoint', telephone: site.phoneE164, contactType: 'customer service', areaServed: 'US-FL', availableLanguage: 'English' },
     ...(site.email ? { email: site.email } : {}),
     foundingDate: String(site.founded),
     priceRange: '$$',
@@ -82,8 +83,9 @@ export function faqPage(faqs: Faq[], path: string) {
   };
 }
 
-export function webPage(path: string, name: string, description: string, type = 'WebPage') {
+export function webPage(path: string, name: string, description: string, type = 'WebPage', extra: object = {}) {
   return {
+    ...extra,
     '@type': type,
     '@id': `${U}${path}#webpage`,
     url: `${U}${path === '/' ? '/' : path}`,
@@ -125,9 +127,12 @@ export function localServiceSchema(l: Location) {
   };
 }
 
-export function article(p: { slug: string; title: string; description: string; pubDate: Date; updatedDate?: Date }) {
+export function article(p: { slug: string; title: string; description: string; pubDate: Date; updatedDate?: Date; service?: string; towns?: Location[] }) {
   const url = `${U}/blogs/${p.slug}`;
   return {
+    isPartOf: { '@id': `${U}/blogs#blog` },
+    ...(p.service ? { about: { '@id': `${U}/services/${p.service}#service` } } : {}),
+    ...(p.towns?.length ? { mentions: p.towns.map((t) => ({ '@type': 'City', name: `${t.town}, FL`, url: `${U}/service-areas/${t.slug}` })) } : {}),
     '@type': 'BlogPosting',
     '@id': `${url}#article`,
     headline: p.title,
@@ -140,6 +145,16 @@ export function article(p: { slug: string; title: string; description: string; p
     publisher: { '@id': ORG_ID },
     image: `${U}/og-default.png`,
     inLanguage: 'en-US',
+  };
+}
+
+export function itemList(path: string, name: string, items: { name: string; path: string }[]) {
+  return {
+    '@type': 'ItemList',
+    '@id': `${U}${path}#list`,
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((it, i) => ({ '@type': 'ListItem', position: i + 1, name: it.name, url: `${U}${it.path}` })),
   };
 }
 

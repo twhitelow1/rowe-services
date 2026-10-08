@@ -7,13 +7,13 @@ import TownChips from '../components/TownChips.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, telHref, quoteHref, yearsInBusiness } from '../data/site';
 import { services } from '../data/services';
-import { webPage, breadcrumbs } from '../lib/schema';
+import { webPage, breadcrumbs, OWNER_ID } from '../lib/schema';
 
 const path = '/about';
 const title = 'About Justin Rowe | Owner-Operated Since 2013 | Rowe Services';
 const description = 'Meet Justin Rowe, owner of Rowe Services & Maintenance in Grand Island, FL. Owner-operated since 2013, every job quoted personally and backed for 15 years.';
 const crumbs = [{ name: 'Home', path: '/' }, { name: 'About', path }];
-const schema = [webPage(path, title, description, 'AboutPage'), breadcrumbs(crumbs)];
+const schema = [webPage(path, title, description, 'AboutPage', { mainEntity: { '@id': OWNER_ID } }), breadcrumbs(crumbs)];
 ---
 <Base title={title} description={description} path={path} schema={schema}>
   <section class="page-hero">

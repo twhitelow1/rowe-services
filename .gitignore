@@ -6,3 +6,6 @@ dist/
 !.env.example
 .DS_Store
 .vercel
+dist-prod/
+test-results/
+playwright-report/

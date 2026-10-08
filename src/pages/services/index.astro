@@ -8,7 +8,7 @@ import Faq from '../../components/Faq.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { services } from '../../data/services';
 import { quoteHref } from '../../data/site';
-import { webPage, faqPage, breadcrumbs } from '../../lib/schema';
+import { webPage, faqPage, breadcrumbs, itemList } from '../../lib/schema';
 
 const path = '/services';
 const title = 'Exterior Home Services in Central Florida | Rowe Services';
@@ -21,7 +21,7 @@ const faqs = [
   { q: 'Can soffit and fascia problems affect my gutters?', a: 'Yes. Gutters rely on solid attachment points. Weak or rotting fascia causes sagging, poor drainage and repeat failures.' },
   { q: 'How long do these projects take?', a: 'Most gutter jobs are done in a day; siding and enclosures vary by size and complexity. After the site visit you get a clear timeline.' },
 ];
-const schema = [webPage(path, title, description, 'CollectionPage'), breadcrumbs(crumbs), faqPage(faqs, path)];
+const schema = [webPage(path, title, description, 'CollectionPage'), breadcrumbs(crumbs), faqPage(faqs, path), itemList(path, 'Exterior home services', services.map((s) => ({ name: s.name, path: `/services/${s.slug}` })))];
 ---
 <Base title={title} description={description} path={path} schema={schema}>
   <section class="page-hero">

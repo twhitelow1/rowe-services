@@ -22,6 +22,7 @@ export type Location = {
 const std = (town: string): Faq[] => [
   { q: `Who installs seamless gutters in ${town}, FL?`, a: `Rowe Services & Maintenance, an owner-operated exterior company based in Grand Island, FL, installs 6" seamless aluminum gutters in ${town}. Owner Justin Rowe quotes every job himself and every install carries a 15-year warranty.` },
   { q: `Do you charge to come out and quote in ${town}?`, a: `No. Quotes are free and no-obligation. Justin walks the property with you and gives you a clear, written price.` },
+  { q: `How long does a gutter install take in ${town}?`, a: `Most homes are done in a single day, depending on the layout and how much downspout and drainage work is needed. You get 24 hours' confirmation before the crew arrives.` },
 ];
 
 export const locations: Location[] = [

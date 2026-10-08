@@ -74,7 +74,6 @@ strong { color: var(--navy); font-weight: 750; }
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.97); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }
 .site-header .wrap { display: flex; align-items: center; gap: 1.25rem; min-height: 78px; position: relative; }
 .brand { display: block; flex: none; }
-.logo { width: 196px; height: auto; }
 .nav { margin-left: auto; display: flex; align-items: center; gap: .1rem; }
 .nav > a, .dd > a { color: var(--navy); font-weight: 650; font-size: .96rem; text-decoration: none; padding: .55rem .65rem; border-radius: 8px; display: inline-flex; align-items: center; gap: .2rem; }
 .nav > a:hover, .dd > a:hover { background: var(--sky); color: var(--navy); }
@@ -100,7 +99,7 @@ strong { color: var(--navy); font-weight: 750; }
 .mnav-panel a.sub { font-weight: 550; padding-left: 1rem; }
 .mnav-panel .btn { margin-top: .8rem; }
 @media (max-width: 1140px) { .nav { display: none; } .mobile-nav { display: block; } .header-cta { margin-left: auto; } }
-@media (max-width: 640px) { .header-cta { display: none; } .logo { width: 170px; } .site-header .wrap { min-height: 68px; } }
+@media (max-width: 640px) { .header-cta { display: none; } .site-header .wrap { min-height: 68px; } }
 
 /* Hero */
 .hero { position: relative; background: radial-gradient(1200px 600px at 85% -10%, #1f4f7a 0%, transparent 60%), linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%); color: #d5e1ec; overflow: hidden; isolation: isolate; }
@@ -334,7 +333,6 @@ table.data tbody th { color: var(--navy); font-weight: 700; }
 .footer-grid a:hover { color: #fff; }
 .footer-areas { columns: 2; }
 .footer-areas h3 { column-span: all; }
-.footer-brand .logo { width: 200px; margin-bottom: 1rem; }
 .footer-brand p { margin-bottom: .9rem; }
 .footer-brand a { color: #fff; }
 .nap strong { color: #fff; }
@@ -361,3 +359,7 @@ table.data tbody th { color: var(--navy); font-weight: 700; }
 .checklist li { align-items: flex-start; }
 .prose .offer h3, .prose .steps h3, .prose .card h3 { margin-top: 0; }
 .owner-promise li, .trust-item { align-items: flex-start; } .trust-item { align-items: center; }
+/* Official logo */
+.logo { color: var(--navy); width: 250px; height: auto; }
+.footer-brand .logo-stacked { color: #fff; width: 170px; margin-bottom: 1.25rem; }
+@media (max-width: 640px) { .logo { width: 210px; } }

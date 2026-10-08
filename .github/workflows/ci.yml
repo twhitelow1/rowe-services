@@ -1,0 +1,68 @@
+# CI: every push and PR must pass type checks, the build, unit/build/AI-visibility tests,
+# the DubLow SEO audit, the production (indexable) build tests and browser smoke tests.
+# CD: Vercel deploys previews per branch/PR and production from main automatically.
+name: CI
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Build & test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run check
+
+      - name: Build (preview mode, noindex)
+        run: npm run build
+
+      - name: Unit, build and AI-visibility tests
+        run: npm test
+
+      - name: SEO audit
+        run: npm run test:seo
+
+      - name: Production build tests (indexable)
+        run: npm run test:prod
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser smoke tests (desktop + mobile)
+        run: npm run test:e2e
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

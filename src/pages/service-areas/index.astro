@@ -6,13 +6,13 @@ import CtaBand from '../../components/CtaBand.astro';
 import { locations } from '../../data/locations';
 import { services } from '../../data/services';
 import { site, quoteHref } from '../../data/site';
-import { webPage, breadcrumbs } from '../../lib/schema';
+import { webPage, breadcrumbs, itemList } from '../../lib/schema';
 
 const path = '/service-areas';
 const title = 'Service Areas: The Villages, Lake & Marion County | Rowe';
 const description = 'Rowe Services installs seamless gutters, soffit, siding and screen enclosures in The Villages, Lady Lake, Leesburg, Mount Dora, Wildwood and more.';
 const crumbs = [{ name: 'Home', path: '/' }, { name: 'Service Areas', path }];
-const schema = [webPage(path, title, description, 'CollectionPage'), breadcrumbs(crumbs)];
+const schema = [webPage(path, title, description, 'CollectionPage'), breadcrumbs(crumbs), itemList(path, 'Service areas', locations.map((l) => ({ name: `${l.town}, FL`, path: `/service-areas/${l.slug}` })))];
 ---
 <Base title={title} description={description} path={path} schema={schema}>
   <section class="page-hero">
