@@ -8,7 +8,7 @@ import { site, telHref, smsHref } from '../data/site';
 interface Props { heading?: string; sub?: string; id?: string; compact?: boolean }
 const {
   heading = 'Get a free quote',
-  sub = "Fill this out and I'll be the one calling you back. We'll talk through your project and I'll give you an honest, no-obligation, no-pressure quote.",
+  sub = "Tell us about your project and we'll call you back to set up a free on-site visit and an honest, no-obligation quote.",
   id = 'quote',
   compact = false,
 } = Astro.props;
@@ -19,14 +19,13 @@ const hasEmbed = embed.trim().length > 0;
     <p class="quote-kicker"><Icon name="check-circle" size={18} /> Free · No obligation · No pressure</p>
     <h2 class="quote-title">{heading}</h2>
     <p class="quote-sub">{sub}</p>
-    <p class="quote-sign">— Justin Rowe, owner</p>
   </div>
   {hasEmbed ? (
     <div class="quote-embed" set:html={embed} />
   ) : (
     <div class="quote-fallback">
       {/* Shown only until the GHL survey embed is pasted into src/data/lead-form.html */}
-      <a class="btn btn-primary btn-block" href={telHref} data-track="call_click"><Icon name="phone" />Call Justin: {site.phone}</a>
+      <a class="btn btn-primary btn-block" href={telHref} data-track="call_click"><Icon name="phone" />Call {site.phone}</a>
       <a class="btn btn-outline btn-block" href={smsHref} data-track="sms_click"><Icon name="sms" />Text a photo of the problem</a>
       <p class="small muted">Mon–Fri 9–6 · Sat 10–6</p>
     </div>

@@ -35,10 +35,10 @@ export const site = {
   // Brand promises — all taken from the live site's copy. Do not add new claims here.
   warrantyYears: 15,
   usps: [
-    { icon: 'shield', title: 'Backed for 15 years', text: "Most companies warranty their work for 1 to 5 years. We warranty ours for 15, because our sealant process has earned it. Report a leak down the road and we come back out — even if it turns out it wasn't our fault." },
-    { icon: 'user', title: 'The owner is on every job', text: "Justin quotes it, Justin manages it, Justin follows up. You'll know my name, my number, my face and my word from the first call to the final walkthrough." },
+    { icon: 'shield', title: 'Backed for 15 years', text: "Most companies warranty their work for 1 to 5 years. We warranty ours for 15, because our sealant process has earned it. Report a leak down the road and we come back out, even if it turns out it wasn't our fault." },
+    { icon: 'user', title: 'Owner-led on every job', text: 'Every job is quoted, managed and followed up by the owner, not a sales rep. You get one point of contact from the first call to the final walkthrough.' },
     { icon: 'clock', title: 'Quality takes time. We take the time.', text: 'Our crews are never overloaded. If proper installation needs an extra day, it gets an extra day. No shortcuts, no "good enough."' },
-    { icon: 'check', title: 'The job ends when you say it does', text: "A couple of weeks after we wrap, I come back and double-check the work personally. Anything that isn't right gets fixed — no questions asked." },
+    { icon: 'check', title: 'The job ends when you say it does', text: "A couple of weeks after we wrap, we come back and double-check the work. Anything that isn't right gets fixed — no questions asked." },
   ],
 
   // Verbatim customer reviews only. Never edit or invent.

@@ -9,7 +9,7 @@ import { webPage, breadcrumbs } from '../lib/schema';
 
 const path = '/contact-us';
 const title = 'Contact Rowe Services | Free Gutter & Exterior Quote';
-const description = 'Request a free, no-pressure quote from Justin Rowe for seamless gutters, soffit & fascia, siding or screen enclosures. Call or text (352) 706-8913.';
+const description = 'Request a free, no-pressure quote from Rowe Services for seamless gutters, soffit & fascia, siding or screen enclosures. Call or text (352) 706-8913.';
 const crumbs = [{ name: 'Home', path: '/' }, { name: 'Contact', path }];
 const schema = [webPage(path, title, description, 'ContactPage'), breadcrumbs(crumbs)];
 ---
@@ -19,7 +19,7 @@ const schema = [webPage(path, title, description, 'ContactPage'), breadcrumbs(cr
       <div>
         <Breadcrumbs items={crumbs} />
         <h1>Get your free quote</h1>
-        <p class="lede">Tell me a little about what you need. I'll review it, call you back personally, and set a time to walk the property and give you a clear, written price.</p>
+        <p class="lede">Tell us a little about what you need. We'll review it, call you back, and set a time to walk the property and give you a clear, written price.</p>
         <ul class="hero-checks">
           <li><Icon name="phone" /><span>Call or text: <a href={telHref} style="color:#fff;font-weight:800">{site.phone}</a></span></li>
           {site.email && <li><Icon name="mail" /><span>Email: <a href={`mailto:${site.email}`} style="color:#fff">{site.email}</a></span></li>}
@@ -39,8 +39,8 @@ const schema = [webPage(path, title, description, 'ContactPage'), breadcrumbs(cr
       <div>
         <h2>What happens next</h2>
         <ol class="steps" style="grid-template-columns:1fr">
-          <li><h3>I call you back</h3><p>Not a call center, not a sales rep — me.</p></li>
-          <li><h3>We walk the property</h3><p>I listen to what you're trying to solve and measure.</p></li>
+          <li><h3>We call you back</h3><p>A real person from our team, not a call center.</p></li>
+          <li><h3>We walk the property</h3><p>We listen to what you're trying to solve and measure.</p></li>
           <li><h3>You get a clear plan and price</h3><p>Honest, written, no obligation and no pressure.</p></li>
         </ol>
       </div>

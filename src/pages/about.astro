@@ -1,35 +1,36 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
+import Logo from '../components/Logo.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import ReviewCard from '../components/ReviewCard.astro';
 import TownChips from '../components/TownChips.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { site, telHref, quoteHref, yearsInBusiness } from '../data/site';
 import { services } from '../data/services';
-import { webPage, breadcrumbs, OWNER_ID } from '../lib/schema';
+import { webPage, breadcrumbs, ORG_ID } from '../lib/schema';
 
 const path = '/about';
-const title = 'About Justin Rowe | Owner-Operated Since 2013 | Rowe Services';
-const description = 'Meet Justin Rowe, owner of Rowe Services & Maintenance in Grand Island, FL. Owner-operated since 2013, every job quoted personally and backed for 15 years.';
+const title = 'About Rowe Services & Maintenance | Since 2013';
+const description = 'Rowe Services & Maintenance is a locally owned exterior company in Grand Island, FL. Owner-operated since 2013, every install backed for 15 years.';
 const crumbs = [{ name: 'Home', path: '/' }, { name: 'About', path }];
-const schema = [webPage(path, title, description, 'AboutPage', { mainEntity: { '@id': OWNER_ID } }), breadcrumbs(crumbs)];
+const schema = [webPage(path, title, description, 'AboutPage', { mainEntity: { '@id': ORG_ID } }), breadcrumbs(crumbs)];
 ---
 <Base title={title} description={description} path={path} schema={schema}>
   <section class="page-hero">
     <div class="wrap">
       <Breadcrumbs items={crumbs} />
       <span class="eyebrow" style="color:#f0a868">About Rowe Services</span>
-      <h1>Owner-operated since {site.founded}. My name is on every job.</h1>
+      <h1>Locally owned and operated since {site.founded}</h1>
       <p class="lede">Rowe Services & Maintenance is a locally owned, owner-operated exterior company in {site.address.locality}, Florida. We're not a franchise, we're not a call center, and we don't chase volume.</p>
     </div>
   </section>
   <section class="section">
     <div class="wrap owner" id="justin-rowe">
       <div class="owner-card">
-        <div class="initials" aria-hidden="true">JR</div>
-        <h3>{site.owner.name}</h3>
-        <p class="mb-0">Owner & operator</p>
+        <Logo variant="mark" class="owner-mark" />
+        <h3>{site.name}</h3>
+        <p class="mb-0">Locally owned and operated</p>
         <dl>
           <dt>Founded</dt><dd>{site.founded} ({yearsInBusiness}+ years)</dd>
           <dt>Home base</dt><dd>{site.address.locality}, FL</dd>
@@ -38,11 +39,11 @@ const schema = [webPage(path, title, description, 'AboutPage', { mainEntity: { '
         </dl>
       </div>
       <div class="prose">
-        <h2>Hi, I'm Justin Rowe</h2>
-        <p>I've been installing seamless gutters and doing exterior work for homeowners in Lake, Marion, Sumter and Orange County since {site.founded}. My name goes on the truck, on the quote and on a 15-year warranty — because I know my crew's sealant process holds up in Florida rain.</p>
+        <h2>Who we are</h2>
+        <p>Rowe Services & Maintenance was founded in {site.founded} by {site.owner.name} and has been installing seamless gutters and doing exterior work for homeowners in Lake, Marion, Sumter and Orange County ever since. Every install carries a 15-year warranty, because our sealant process holds up in Florida rain.</p>
         <p>We install 6" aluminum seamless K-style gutters: one continuous piece, no sectional joints, far fewer places a leak can start. Alongside gutters, we install soffit and fascia, handle vinyl siding start to finish, and build and repair screen enclosures.</p>
-        <p>We deliberately limit the jobs we take so every homeowner gets the owner — and the quality that comes with that. I quote it, I manage it, and I follow up. You'll know my name, my number, my face and my word from the first call to the final walkthrough.</p>
-        <!-- TODO: add a real photo of Justin + crew/truck (public/justin-rowe.jpg) and a short personal story (family, why he started in 2013). -->
+        <p>We deliberately limit the jobs we take so every project gets the owner's attention, and the quality that comes with that. Every job is quoted on site, managed by the owner and followed up after the crew leaves. You get one point of contact from the first call to the final walkthrough.</p>
+        <!-- TODO: add real photos of the crew, trucks and finished projects. -->
       </div>
     </div>
   </section>
@@ -63,9 +64,9 @@ const schema = [webPage(path, title, description, 'AboutPage', { mainEntity: { '
       <div>
         <ReviewCard {...site.reviews[0]} />
         <div class="card mt-2">
-          <h3>Talk to the owner directly</h3>
+          <h3>Talk to us directly</h3>
           <p>Call or text {site.phone}. Mon–Fri 9–6, Sat 10–6.</p>
-          <div class="btn-row"><a class="btn btn-primary" href={quoteHref}>Get my free quote</a><a class="btn btn-outline" href={telHref}><Icon name="phone" />Call Justin</a></div>
+          <div class="btn-row"><a class="btn btn-primary" href={quoteHref}>Get my free quote</a><a class="btn btn-outline" href={telHref}><Icon name="phone" />Call now</a></div>
         </div>
       </div>
     </div>

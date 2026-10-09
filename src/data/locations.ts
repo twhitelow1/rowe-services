@@ -20,8 +20,8 @@ export type Location = {
 };
 
 const std = (town: string): Faq[] => [
-  { q: `Who installs seamless gutters in ${town}, FL?`, a: `Rowe Services & Maintenance, an owner-operated exterior company based in Grand Island, FL, installs 6" seamless aluminum gutters in ${town}. Owner Justin Rowe quotes every job himself and every install carries a 15-year warranty.` },
-  { q: `Do you charge to come out and quote in ${town}?`, a: `No. Quotes are free and no-obligation. Justin walks the property with you and gives you a clear, written price.` },
+  { q: `Who installs seamless gutters in ${town}, FL?`, a: `Rowe Services & Maintenance, an owner-operated exterior company based in Grand Island, FL, installs 6" seamless aluminum gutters in ${town}. Every job is quoted by the owner and backed by a 15-year warranty.` },
+  { q: `Do you charge to come out and quote in ${town}?`, a: `No. Quotes are free and no-obligation. We walk the property with you and give you a clear, written price.` },
   { q: `How long does a gutter install take in ${town}?`, a: `Most homes are done in a single day, depending on the layout and how much downspout and drainage work is needed. You get 24 hours' confirmation before the crew arrives.` },
 ];
 
@@ -33,8 +33,8 @@ export const locations: Location[] = [
     zips: ['32162', '32163', '32159'],
     geo: { lat: 28.9342, lng: -81.9598 },
     title: 'Gutters & Exterior Services in The Villages, FL | Rowe',
-    description: 'Seamless gutters, soffit & fascia, vinyl siding and lanai screen enclosures in The Villages, FL. Owner-quoted by Justin Rowe, 15-year warranty.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and handles soffit, fascia, vinyl siding and screen enclosures for homes throughout The Villages, FL — across the Sumter, Lake and Marion County sections of the community. Owner Justin Rowe quotes and follows up on every job personally.',
+    description: 'Seamless gutters, soffit & fascia, vinyl siding and lanai screen enclosures in The Villages, FL. Owner-quoted, 15-year warranty. Free quote.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and handles soffit, fascia, vinyl siding and screen enclosures for homes throughout The Villages, FL — across the Sumter, Lake and Marion County sections of the community. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'The Villages is where most of our work happens. Homes here are largely concrete-block construction with stucco, from courtyard villas and patio villas to larger designer homes, and nearly every one has a lanai or birdcage. That makes gutters, fascia and screen enclosures the three things that matter most to keep up.',
       'Summer storms here drop a lot of water in a short time. Without gutters — or with undersized ones — that runoff splashes back onto lanai screens, stains stucco, and washes out the landscaping beds that line most Villages homes. Many newer villages farther south also have young trees that will drop more leaves every year.',
@@ -61,8 +61,8 @@ export const locations: Location[] = [
     zips: ['32159', '32158'],
     geo: { lat: 28.9175, lng: -81.9229 },
     title: 'Seamless Gutters & Exterior Repair in Lady Lake, FL | Rowe',
-    description: 'Seamless gutters, gutter repair, soffit & fascia, siding and screen porches in Lady Lake, FL. Owner-quoted, 15-year warranty. Free quote from Justin Rowe.',
-    answer: 'Rowe Services & Maintenance installs and repairs seamless gutters and handles soffit, fascia, vinyl siding, skirting and screen porches for homes in Lady Lake, FL, in northern Lake County next to The Villages. Owner Justin Rowe quotes every job himself.',
+    description: 'Seamless gutters, gutter repair, soffit & fascia, siding and screen porches in Lady Lake, FL. Owner-quoted, 15-year warranty. Free, no-pressure quote.',
+    answer: 'Rowe Services & Maintenance installs and repairs seamless gutters and handles soffit, fascia, vinyl siding, skirting and screen porches for homes in Lady Lake, FL, in northern Lake County next to The Villages. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Lady Lake sits right alongside The Villages in northern Lake County, with a mix of site-built block homes, older wood-frame houses and a large number of manufactured-home communities. That mix means we see every kind of gutter, fascia and skirting problem here.',
       'The most common call we get in Lady Lake is a gutter corner or seam that was sealed in spring and is dripping again by August. Central Florida heat and humidity break down ordinary sealant fast — which is exactly why we moved to seamless runs and our own sealant process.',
@@ -89,7 +89,7 @@ export const locations: Location[] = [
     geo: { lat: 28.8611, lng: -81.9065 },
     title: 'Gutters & Exterior Services in Fruitland Park, FL | Rowe',
     description: 'Seamless gutters, soffit & fascia, siding and screen enclosures in Fruitland Park, FL. Storm-ready exterior work, owner-quoted. Free estimate.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and repairs soffit, fascia, siding and screen enclosures for homes in Fruitland Park, FL, between Lady Lake and Leesburg on Lake Griffin. Owner Justin Rowe quotes every job personally.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and repairs soffit, fascia, siding and screen enclosures for homes in Fruitland Park, FL, between Lady Lake and Leesburg on Lake Griffin. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Fruitland Park is a small Lake County city between Lady Lake and Leesburg, with a mix of established neighborhoods, newer subdivisions and lakeside homes near Lake Griffin. Being inland gives a false sense of safety — tropical systems still push heavy rain and wind across this part of Lake County every season.',
       'Before storm season, the weak points we see most here are gutters that overflow at the corners, fascia that has quietly rotted behind them, and screen enclosures with loose panels that catch the wind.',
@@ -115,7 +115,7 @@ export const locations: Location[] = [
     geo: { lat: 28.8108, lng: -81.8779 },
     title: 'Seamless Gutters, Soffit & Fascia in Leesburg, FL | Rowe',
     description: 'Seamless gutters, soffit & fascia rot repair, vinyl siding and screen porches in Leesburg, FL. Owner-quoted, 15-year warranty. Free quote.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and replaces rotted soffit and fascia, vinyl siding and screen enclosures for homes in Leesburg, FL, between Lake Harris and Lake Griffin in Lake County. Owner Justin Rowe quotes and checks every job himself.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and replaces rotted soffit and fascia, vinyl siding and screen enclosures for homes in Leesburg, FL, between Lake Harris and Lake Griffin in Lake County. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Leesburg has some of the oldest housing stock we work on — established neighborhoods with wood-frame homes and painted wood fascia, alongside newer subdivisions and 55+ communities. Older wood trim plus lake-country humidity is a recipe for soffit and fascia rot.',
       'Rot usually starts where a gutter has overflowed for years or where a soffit has no ventilation. By the time paint is peeling, the wood behind it is often soft. We replace the damaged sections, fix the water problem that caused it, and cover the roof edge in low-maintenance vinyl or aluminum.',
@@ -141,7 +141,7 @@ export const locations: Location[] = [
     geo: { lat: 28.8042, lng: -81.7256 },
     title: 'Gutters, Soffit & Siding in Tavares, FL | Rowe Services',
     description: 'Seamless gutters, soffit & fascia, vinyl siding and screen enclosures in Tavares, FL. Owner-operated since 2013, 15-year warranty. Free quote.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and handles soffit, fascia, vinyl siding and screen enclosures for homes in Tavares, FL, the Lake County seat between Lake Dora, Lake Eustis and Lake Harris. Owner Justin Rowe quotes every job.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and handles soffit, fascia, vinyl siding and screen enclosures for homes in Tavares, FL, the Lake County seat between Lake Dora, Lake Eustis and Lake Harris. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Tavares is surrounded by water — Lake Dora, Lake Eustis and Lake Harris all touch the city — and that humidity is hard on roof edges, wood trim and screens. Homes range from older wood-frame houses near downtown to block homes and newer communities.',
       'We see a lot of soffit and fascia that has started to rot from the inside, gutters that have pulled loose as a result, and lakeside screen enclosures that need rescreening after a few seasons of sun and storms.',
@@ -167,7 +167,7 @@ export const locations: Location[] = [
     geo: { lat: 28.8528, lng: -81.6851 },
     title: 'Gutters & Screen Enclosures in Eustis, FL | Rowe Services',
     description: 'Seamless gutters, porch and patio enclosures, soffit & fascia and siding in Eustis, FL. Owner-quoted, minutes from our Grand Island base. Free quote.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters, encloses porches and patios, and repairs soffit, fascia and siding for homes in Eustis, FL, on the shore of Lake Eustis — just south of our home base in Grand Island. Owner Justin Rowe quotes every job.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters, encloses porches and patios, and repairs soffit, fascia and siding for homes in Eustis, FL, on the shore of Lake Eustis — just south of our home base in Grand Island. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Eustis is practically next door to our base in Grand Island. Homes here range from historic wood-frame houses near downtown and the lakefront to block homes and newer subdivisions on the edges of town.',
       'A lot of Eustis homeowners call us to enclose an existing porch or patio so they can use it year-round without bugs and blown-in debris — and to add gutters so roof runoff stops splashing into the space.',
@@ -182,7 +182,7 @@ export const locations: Location[] = [
     nearby: ['grand-island-fl', 'mount-dora-fl', 'tavares-fl', 'umatilla-fl'],
     faqs: [
       ...std('Eustis'),
-      { q: 'Can you close in my existing porch in Eustis?', a: 'Yes. Patio and porch close-ins are one of our most common projects. I walk the existing structure with you and tell you what\'s realistic.' },
+      { q: 'Can you close in my existing porch in Eustis?', a: 'Yes. Patio and porch close-ins are one of our most common projects. We walk the existing structure with you and tell you what\'s realistic.' },
     ],
   },
   {
@@ -192,8 +192,8 @@ export const locations: Location[] = [
     zips: ['32757'],
     geo: { lat: 28.8025, lng: -81.6445 },
     title: 'Gutters & Porch Enclosures in Mount Dora, FL | Rowe',
-    description: 'Seamless gutters, porch & patio enclosures, soffit & fascia and siding in Mount Dora, FL. Owner-quoted by Justin Rowe, 15-year warranty.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and builds porch and patio enclosures, soffit, fascia and siding for homes in Mount Dora, FL, on Lake Dora in Lake County. Owner Justin Rowe quotes every job and follows up personally.',
+    description: 'Seamless gutters, porch & patio enclosures, soffit & fascia and siding in Mount Dora, FL. Owner-quoted, 15-year warranty. Free quote.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and builds porch and patio enclosures, soffit, fascia and siding for homes in Mount Dora, FL, on Lake Dora in Lake County. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Mount Dora has rolling hills, mature oak canopy and a lot of character homes — older wood-frame houses around downtown and the lakefront, plus newer neighborhoods on the outskirts. Hills and trees change how water moves: steeper runoff and heavier leaf load both demand properly sized gutters and downspouts.',
       'Porch and patio enclosures are a big request here. Homeowners want to enjoy the outdoor space without the bugs and leaf litter, and a well-built enclosure does that while keeping the look of the house.',
@@ -208,7 +208,7 @@ export const locations: Location[] = [
     nearby: ['eustis-fl', 'tavares-fl', 'grand-island-fl', 'umatilla-fl'],
     faqs: [
       ...std('Mount Dora'),
-      { q: 'Do I need gutter guards in Mount Dora?', a: 'Under mature oaks, often yes. Guards cut down clogs and the overflow that happens when a sudden downpour hits a gutter full of leaves. I\'ll tell you honestly if your trees make them worth it.' },
+      { q: 'Do I need gutter guards in Mount Dora?', a: 'Under mature oaks, often yes. Guards cut down clogs and the overflow that happens when a sudden downpour hits a gutter full of leaves. We\'ll tell you honestly if your trees make them worth it.' },
     ],
   },
   {
@@ -234,7 +234,7 @@ export const locations: Location[] = [
     nearby: ['grand-island-fl', 'eustis-fl', 'mount-dora-fl', 'weirsdale-fl'],
     faqs: [
       ...std('Umatilla'),
-      { q: 'Do gutter guards work with pine needles?', a: 'Screens reduce how much needle debris gets into the gutter, which cuts down on clogs and overflow. No guard is zero-maintenance, and I\'ll explain what to expect for your trees.' },
+      { q: 'Do gutter guards work with pine needles?', a: 'Screens reduce how much needle debris gets into the gutter, which cuts down on clogs and overflow. No guard is zero-maintenance, and we\'ll explain what to expect for your trees.' },
     ],
   },
   {
@@ -245,7 +245,7 @@ export const locations: Location[] = [
     geo: { lat: 28.8872, lng: -81.7298 },
     title: 'Gutters & Exterior Services in Grand Island, FL | Rowe',
     description: 'Rowe Services & Maintenance is based in Grand Island, FL. Seamless gutters, soffit & fascia, siding and screen porches from your local owner-operator.',
-    answer: 'Rowe Services & Maintenance is based in Grand Island, FL, in Lake County between Eustis and Umatilla. We install seamless gutters and handle soffit, fascia, vinyl siding and screen enclosures for our neighbors here and across Central Florida, with owner Justin Rowe on every job.',
+    answer: 'Rowe Services & Maintenance is based in Grand Island, FL, in Lake County between Eustis and Umatilla. We install seamless gutters and handle soffit, fascia, vinyl siding and screen enclosures for our neighbors here and across Central Florida, with the owner on every job.',
     local: [
       'Grand Island is home base. It\'s a quiet, unincorporated part of Lake County with lakefront homes, acreage and wooded lots, and a mix of block, wood-frame and manufactured homes.',
       'Being local matters: you\'re dealing with a neighbor whose name is on the truck, and if something needs a second look after the job, it\'s a short drive for us to come back and make it right.',
@@ -271,7 +271,7 @@ export const locations: Location[] = [
     geo: { lat: 28.8653, lng: -82.0401 },
     title: 'Seamless Gutters & Gutter Guards in Wildwood, FL | Rowe',
     description: 'Seamless gutters, gutter guards, soffit & fascia, siding and screen enclosures in Wildwood, FL. Owner-quoted, 15-year warranty. Free quote.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and gutter guards and handles soffit, fascia, siding and screen enclosures for homes in Wildwood, FL, in Sumter County — including the newer villages and neighborhoods south of State Road 44. Owner Justin Rowe quotes every job.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and gutter guards and handles soffit, fascia, siding and screen enclosures for homes in Wildwood, FL, in Sumter County — including the newer villages and neighborhoods south of State Road 44. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Wildwood covers older neighborhoods under heavy oak and pine canopy as well as fast-growing new communities, including the southern villages of The Villages. Older lots shed leaves, needles and twigs straight onto the roof all year.',
       'When storm season hits, that canopy turns an open gutter into a catch basin. Gutter guards and properly placed downspouts keep heavy rain moving instead of spilling over the edge.',
@@ -297,7 +297,7 @@ export const locations: Location[] = [
     geo: { lat: 28.9989, lng: -82.0151 },
     title: 'Gutters, Siding & Exterior Work in Summerfield, FL | Rowe',
     description: 'Seamless gutters, vinyl siding, soffit & fascia and screen porches in Summerfield, FL (Marion County). Owner-quoted, 15-year warranty. Free quote.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and vinyl siding and handles soffit, fascia and screen porches for homes in Summerfield, FL, in southern Marion County along the US-301/441 corridor north of The Villages. Owner Justin Rowe quotes every job.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and vinyl siding and handles soffit, fascia and screen porches for homes in Summerfield, FL, in southern Marion County along the US-301/441 corridor north of The Villages. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Summerfield sits just north of The Villages in Marion County, with 55+ communities, manufactured-home parks and site-built homes on larger lots along the US-301/441 corridor and around Lake Weir.',
       'Vinyl siding is a frequent project here. What homeowners wish they knew beforehand is that the install matters more than the panel: flashing, fastening and ventilation decide whether siding lasts in Florida heat.',
@@ -322,8 +322,8 @@ export const locations: Location[] = [
     zips: ['34420', '34421'],
     geo: { lat: 29.0553, lng: -82.0623 },
     title: 'Vinyl Siding & Seamless Gutters in Belleview, FL | Rowe',
-    description: 'Vinyl siding, seamless gutters, soffit & fascia and screen enclosures in Belleview, FL. Owner-quoted by Justin Rowe, 15-year warranty. Free quote.',
-    answer: 'Rowe Services & Maintenance installs vinyl siding and seamless gutters and handles soffit, fascia and screen enclosures for homes in Belleview, FL, in Marion County south of Ocala. Owner Justin Rowe quotes and follows up on every job.',
+    description: 'Vinyl siding, seamless gutters, soffit & fascia and screen enclosures in Belleview, FL. Owner-quoted, 15-year warranty. Free quote.',
+    answer: 'Rowe Services & Maintenance installs vinyl siding and seamless gutters and handles soffit, fascia and screen enclosures for homes in Belleview, FL, in Marion County south of Ocala. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Belleview is a Marion County town on the US-301/441 corridor between Ocala and The Villages, with established neighborhoods of block and wood-frame homes plus many manufactured homes and newer subdivisions.',
       'Siding replacement and gutter installs are the most common projects we do here — often together, since new siding is the right time to make sure roof runoff isn\'t soaking the walls.',
@@ -349,7 +349,7 @@ export const locations: Location[] = [
     geo: { lat: 28.9800, lng: -81.9187 },
     title: 'Gutters & Exterior Services in Weirsdale, FL | Rowe',
     description: 'Seamless gutters, siding, skirting, soffit & fascia and screen porches in Weirsdale, FL near Lake Weir. Owner-quoted, 15-year warranty. Free quote.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and handles siding, skirting, soffit, fascia and screen porches for homes in Weirsdale, FL, in southeastern Marion County near Lake Weir. Owner Justin Rowe quotes every job personally.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and handles siding, skirting, soffit, fascia and screen porches for homes in Weirsdale, FL, in southeastern Marion County near Lake Weir. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Weirsdale is rural Marion County horse country near the south shore of Lake Weir — farms, acreage and homes set among big oaks, along with manufactured homes and lakefront houses.',
       'On larger rural properties, gutters do more than protect the house: well-placed downspouts keep water away from foundations, walkways and outbuildings instead of carving channels in sandy soil.',
@@ -375,7 +375,7 @@ export const locations: Location[] = [
     geo: { lat: 29.0425, lng: -81.9287 },
     title: 'Gutters & Screen Enclosures in Ocklawaha, FL | Rowe',
     description: 'Seamless gutters, screen enclosures, siding, skirting, soffit & fascia in Ocklawaha, FL on Lake Weir. Owner-quoted, 15-year warranty. Free quote.',
-    answer: 'Rowe Services & Maintenance installs seamless gutters and builds and repairs screen enclosures, siding, skirting, soffit and fascia for homes in Ocklawaha, FL, on the north shore of Lake Weir in Marion County. Owner Justin Rowe quotes every job.',
+    answer: 'Rowe Services & Maintenance installs seamless gutters and builds and repairs screen enclosures, siding, skirting, soffit and fascia for homes in Ocklawaha, FL, on the north shore of Lake Weir in Marion County. Every job is quoted by the owner and backed by a 15-year warranty.',
     local: [
       'Ocklawaha wraps the north side of Lake Weir in Marion County, with lakefront homes, older cottages, manufactured homes and wooded lots.',
       'Lakeside homes here get a lot of use out of screen porches and enclosures, and the sun and storms off the lake wear screens and spline out faster than homeowners expect.',

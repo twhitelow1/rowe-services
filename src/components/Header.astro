@@ -34,13 +34,13 @@ const cur = (p: string) => (path === p ? 'page' : undefined);
           <a class="all" href="/service-areas">All service areas</a>
         </div>
       </div>
-      <a href="/about" aria-current={cur('/about')}>About Justin</a>
+      <a href="/about" aria-current={cur('/about')}>About</a>
       <a href="/reviews" aria-current={cur('/reviews')}>Reviews</a>
       <a href="/blogs" aria-current={cur('/blogs')}>Blog</a>
       <a href="/contact-us" aria-current={cur('/contact-us')}>Contact</a>
     </nav>
     <div class="header-cta">
-      <a class="hdr-phone" href={telHref} data-track="call_click"><Icon name="phone" /><span><small>Call or text Justin</small>{site.phone}</span></a>
+      <a class="hdr-phone" href={telHref} data-track="call_click"><Icon name="phone" /><span><small>Call or text</small>{site.phone}</span></a>
       <a class="btn btn-primary" href={quoteHref} data-track="quote_click">Free Quote</a>
     </div>
     <details class="mobile-nav">
@@ -50,7 +50,7 @@ const cur = (p: string) => (path === p ? 'page' : undefined);
         {services.map((s) => <a class="sub" href={`/services/${s.slug}`}>{s.name}</a>)}
         <a href="/service-areas">Service areas</a>
         <a href="/free-gutter-inspection">Free gutter inspection</a>
-        <a href="/about">About Justin</a>
+        <a href="/about">About us</a>
         <a href="/reviews">Reviews</a>
         <a href="/blogs">Blog</a>
         <a href="/contact-us">Contact</a>

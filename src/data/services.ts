@@ -1,5 +1,5 @@
-// One object = one service page at /services/<slug>. Copy is in Justin's first-person,
-// plain-spoken voice. Facts come from the live site; no prices or new guarantees invented.
+// One object = one service page at /services/<slug>. Copy is in the company's plain-spoken
+// "we" voice. Facts come from the live site; no prices or new guarantees invented.
 
 export type Faq = { q: string; a: string };
 export type Item = { title: string; text: string };
@@ -33,7 +33,7 @@ export const services: Service[] = [
     short: 'Seamless Gutters',
     icon: 'gutter',
     title: 'Seamless Gutters in The Villages, FL | Rowe Services',
-    description: 'Owner-installed 6" seamless aluminum gutters in The Villages & Lake County, FL. Repairs, leaf guards, 15-year warranty. Free quote from Justin Rowe.',
+    description: 'Owner-installed 6" seamless aluminum gutters in The Villages & Lake County, FL. Repairs, leaf guards, 15-year warranty. Free, no-pressure quote.',
     h1: 'Seamless Gutter Installation in The Villages, FL',
     answer: 'Rowe Services & Maintenance installs, replaces and repairs 6-inch seamless aluminum K-style gutters for homes in The Villages and across Lake, Marion, Sumter and Orange County, Florida. Each gutter run is formed on site as one continuous piece, so there are far fewer joints where a leak can start, and every install is backed by a 15-year warranty.',
     card: '6" seamless aluminum K-style gutters, replacements, repairs, mobile-home gutters and leaf guards — sized to your roofline and built for Florida downpours.',
@@ -41,11 +41,11 @@ export const services: Service[] = [
       { label: 'Gutter profile', value: '6" seamless aluminum K-style' },
       { label: 'Warranty', value: '15 years on every install' },
       { label: 'Typical install', value: 'Most homes in a single day' },
-      { label: 'Who quotes it', value: 'Justin Rowe, the owner' },
+      { label: 'Who quotes it', value: 'The owner, on site' },
     ],
     intro: [
       "Central Florida storms can dump a lot of water fast. When gutters can't keep up, that water ends up on your fascia, your landscaping and against your foundation. A seamless system moves it where it belongs — away from the house.",
-      "Seamless gutters are formed from one continuous run instead of short sections snapped together. That means fewer leak points, a cleaner line along your roof, and less to maintain. I size every system to your actual roofline and drainage, not a one-size-fits-all guess.",
+      "Seamless gutters are formed from one continuous run instead of short sections snapped together. That means fewer leak points, a cleaner line along your roof, and less to maintain. We size every system to your actual roofline and drainage, not a one-size-fits-all guess.",
     ],
     signsHeading: 'Signs you need new gutters or a repair',
     signs: [
@@ -60,7 +60,7 @@ export const services: Service[] = [
       { title: 'Seamless gutter installation', text: "Custom-fit 6\" seamless gutters that match your roofline. We dial in the pitch so water doesn't stand, use secure hangers, and plan clean downspout routing so runoff goes where you want it." },
       { title: 'Gutter replacement', text: 'Old sectional gutters leaking at every seam? We remove the failing system and replace it with one continuous run per side — fewer joints, fewer leaks.' },
       { title: 'Gutter repair', text: 'Leaking, sagging, overflowing or pulling away? We find the cause and fix it the right way: correcting slope, re-securing runs, replacing damaged sections, resealing corners and end caps, or adjusting downspouts.' },
-      { title: 'Gutter screens & leaf guards', text: "Screens cut down clogs from oak leaves, pine needles and roof grit — important here, where a sudden downpour turns a small clog into a big overflow. I'll tell you straight whether your trees make them worth it." },
+      { title: 'Gutter screens & leaf guards', text: "Screens cut down clogs from oak leaves, pine needles and roof grit — important here, where a sudden downpour turns a small clog into a big overflow. We'll tell you straight whether your trees make them worth it." },
       { title: 'Mobile & manufactured home gutters', text: 'Gutter systems sized and fastened for mobile and manufactured homes, including the lighter rooflines common in 55+ communities.' },
       { title: 'Downspouts & drainage', text: 'Downspout placement, sizing and extensions planned so water clears the foundation and doesn\'t wash out sandy Florida soil.' },
     ],
@@ -71,10 +71,10 @@ export const services: Service[] = [
       { title: 'Less maintenance', text: 'Especially with gutter screens installed.' },
     ],
     process: [
-      { title: 'Assess & measure', text: 'I walk the property with you, measure, and look at rooflines, valleys and where the water actually goes.' },
+      { title: 'Assess & measure', text: 'We walk the property with you, measure, and look at rooflines, valleys and where the water actually goes.' },
       { title: 'Design & plan', text: 'Gutter sizing, downspout placement and a drainage plan for your home.' },
       { title: 'Quote & build', text: 'A clear quote, 24 hours\' confirmation before we start, then installation with secure fastening, proper slope and tight seals.' },
-      { title: 'Test & follow up', text: 'Final water-flow check and cleanup. Then I come back a couple of weeks later to double-check the work myself.' },
+      { title: 'Test & follow up', text: 'Final water-flow check and cleanup. Then we come back a couple of weeks later to double-check the work.' },
     ],
     includes: [
       'On-site measurement and drainage review by the owner',
@@ -95,10 +95,10 @@ export const services: Service[] = [
       { factor: 'Gutter screens / guards', why: 'Optional; priced per foot if your trees make them worthwhile.' },
     ],
     faqs: [
-      { q: 'How much do seamless gutters cost in The Villages, FL?', a: "It depends on linear footage, number of downspouts, stories, corners and whether old gutters or rotted fascia need to come off first. I measure on site and give you a clear, written price — no pressure and no obligation." },
+      { q: 'How much do seamless gutters cost in The Villages, FL?', a: "It depends on linear footage, number of downspouts, stories, corners and whether old gutters or rotted fascia need to come off first. We measure on site and give you a clear, written price — no pressure and no obligation." },
       { q: 'What are seamless gutters?', a: 'Seamless gutters are formed on site from one continuous piece of aluminum for each run, so there are no sectional joints along the length. Fewer joints means fewer places for a leak to start.' },
-      { q: 'What size gutters do I need for heavy Florida rain?', a: "It depends on your roof area, pitch and downspout layout. We install 6\" K-style seamless gutters, and I'll walk the roofline with you and tell you straight what your home actually needs." },
-      { q: 'Can you repair a leaking gutter without replacing everything?', a: 'Yes. Many problems are repairable — resealing, rehanging, correcting pitch or replacing a damaged section. If the system is worn out, replacement may be the better value, and I will tell you which.' },
+      { q: 'What size gutters do I need for heavy Florida rain?', a: "It depends on your roof area, pitch and downspout layout. We install 6\" K-style seamless gutters, and we'll walk the roofline with you and tell you straight what your home actually needs." },
+      { q: 'Can you repair a leaking gutter without replacing everything?', a: 'Yes. Many problems are repairable — resealing, rehanging, correcting pitch or replacing a damaged section. If the system is worn out, replacement may be the better value, and we\'ll tell you which.' },
       { q: 'Are gutter guards worth it in Central Florida?', a: 'Often, yes, especially under oaks and pines. Screens reduce clogs and the overflow that happens when a sudden downpour hits a partly blocked gutter.' },
       { q: 'How long does gutter installation take?', a: 'Most homes are done in a single day, depending on the layout and how much downspout and drainage work is needed.' },
       { q: 'Why do my gutters overflow even when they look clean?', a: 'Common causes are improper slope, undersized or too few downspouts, crushed sections, hidden roof-grit buildup, or clogged extensions and underground drains.' },
@@ -146,7 +146,7 @@ export const services: Service[] = [
       { title: 'A solid base for gutters', text: 'Sound fascia means gutters stay attached and draining.' },
     ],
     process: [
-      { title: 'Roofline assessment', text: 'I inspect for rot, gaps, ventilation needs and gutter-related issues, then map the right approach.' },
+      { title: 'Roofline assessment', text: 'We inspect for rot, gaps, ventilation needs and gutter-related issues, then map the right approach.' },
       { title: 'Materials & clear quote', text: 'Vinyl or aluminum based on performance and look, with the full scope and timeline in writing.' },
       { title: 'Prep & install', text: 'Remove failing sections, repair what\'s underneath, then install with straight lines, secure fastening and tight edges.' },
       { title: 'Seal, vent check & walkthrough', text: 'We seal all edges, confirm airflow if vented soffit was used, and walk the finished work with you.' },
@@ -171,8 +171,8 @@ export const services: Service[] = [
       { q: 'Can you replace soffit and fascia at the same time as gutters?', a: "Yes, and it's usually the right call. The fascia supports the gutters, so handling both together means cleaner results and a longer-lasting system." },
       { q: 'Why does vented soffit matter in Central Florida?', a: 'Vented soffit improves attic airflow, which can help reduce heat buildup and moisture problems that strain the roof system.' },
       { q: 'Do you work on mobile homes and CMU homes?', a: 'Yes. We install soffit and fascia on CMU (concrete block), wood-frame and mobile homes, for both new construction and remodels.' },
-      { q: 'Vinyl or aluminum — which is better?', a: "Both hold up well in Florida and don't need painting. I'll recommend one based on your home, the look you want and where it's going." },
-      { q: 'How much does soffit and fascia replacement cost?', a: 'It depends on linear footage, how much rot is underneath, material choice and access. I quote it on site so you get a real number, not a guess.' },
+      { q: 'Vinyl or aluminum — which is better?', a: "Both hold up well in Florida and don't need painting. We'll recommend one based on your home, the look you want and where it's going." },
+      { q: 'How much does soffit and fascia replacement cost?', a: 'It depends on linear footage, how much rot is underneath, material choice and access. We quote it on site so you get a real number, not a guess.' },
     ],
   },
   {
@@ -239,11 +239,11 @@ export const services: Service[] = [
     ],
     faqs: [
       { q: 'Is vinyl siding a good fit for Florida homes?', a: 'Yes — when it\'s installed right, with proper flashing and ventilation, vinyl holds up well to heat and rain and stays low-maintenance for years.' },
-      { q: 'Do I need full replacement or just a repair?', a: 'If damage is isolated, a repair can work. Widespread warping, fading or recurring problems usually justify replacement. I\'ll tell you which makes sense.' },
+      { q: 'Do I need full replacement or just a repair?', a: 'If damage is isolated, a repair can work. Widespread warping, fading or recurring problems usually justify replacement. We\'ll tell you which makes sense.' },
       { q: 'Do you install mobile-home skirting?', a: 'Yes. We install vinyl skirting for mobile and manufactured homes along with siding work.' },
       { q: 'Will vinyl siding increase my home\'s value?', a: 'It can noticeably improve curb appeal, which helps how a home is perceived and marketed.' },
       { q: 'How do I clean vinyl siding?', a: 'Gentle soap and water with a low-pressure rinse. Avoid high-pressure washing that can force water behind the panels.' },
-      { q: 'How long does siding installation take?', a: 'It depends on home size and complexity. I give you a clear timeline after the site visit — and we don\'t rush it.' },
+      { q: 'How long does siding installation take?', a: 'It depends on home size and complexity. You get a clear timeline after the site visit — and we don\'t rush it.' },
     ],
   },
   {
@@ -264,7 +264,7 @@ export const services: Service[] = [
     ],
     intro: [
       "Outdoor space is a big part of Florida living. A good enclosure keeps out the bugs, debris, harsh sun and wind so you actually use your patio — morning coffee, evenings with friends, all year.",
-      "Whether you want a new build or need repairs to what you have, I'll walk your existing structure with you and tell you what's realistic.",
+      "Whether you want a new build or need repairs to what you have, we'll walk your existing structure with you and tell you what's realistic.",
     ],
     signsHeading: 'Why homeowners enclose a porch',
     signs: [

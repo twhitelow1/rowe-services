@@ -26,7 +26,7 @@ export function organization() {
     legalName: site.legalName,
     alternateName: ["Rowe Service's", 'Rowe Services', 'Rowe Services and Maintenance LLC'],
     slogan: 'Seamless Gutters & More',
-    description: `Rowe Services & Maintenance is an owner-operated exterior contractor based in Grand Island, Florida, founded in ${site.founded} by Justin Rowe. It installs 6-inch seamless aluminum K-style gutters and gutter guards, soffit and fascia, vinyl siding and skirting, and screen porches and enclosures for homes in The Villages and across Lake, Marion, Sumter and Orange County, with a 15-year warranty on installs.`,
+    description: `Rowe Services & Maintenance is an owner-operated exterior contractor based in Grand Island, Florida, founded in ${site.founded} by ${site.owner.name}. It installs 6-inch seamless aluminum K-style gutters and gutter guards, soffit and fascia, vinyl siding and skirting, and screen porches and enclosures for homes in The Villages and across Lake, Marion, Sumter and Orange County, with a 15-year warranty on installs.`,
     url: `${U}/`,
     logo: { '@type': 'ImageObject', url: `${U}/logo.png`, width: 512, height: 512 },
     image: `${U}/og-default.png`,
@@ -94,7 +94,7 @@ export function webPage(path: string, name: string, description: string, type = 
     isPartOf: { '@id': SITE_ID },
     about: { '@id': ORG_ID },
     dateModified: site.lastReviewed,
-    reviewedBy: { '@id': OWNER_ID },
+    reviewedBy: { '@id': ORG_ID },
     inLanguage: 'en-US',
   };
 }
@@ -141,7 +141,7 @@ export function article(p: { slug: string; title: string; description: string; p
     mainEntityOfPage: url,
     datePublished: p.pubDate.toISOString().slice(0, 10),
     dateModified: (p.updatedDate ?? p.pubDate).toISOString().slice(0, 10),
-    author: { '@id': OWNER_ID },
+    author: { '@id': ORG_ID },
     publisher: { '@id': ORG_ID },
     image: `${U}/og-default.png`,
     inLanguage: 'en-US',

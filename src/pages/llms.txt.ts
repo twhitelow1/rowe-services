@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
 Key facts:
 - Gutters: 6-inch seamless aluminum K-style gutters formed on site as one continuous piece per run; new installs, replacements, repairs, mobile-home gutters, downspouts and gutter screens/leaf guards. Most homes are installed in a single day.
 - Warranty: 15 years on installs. If a leak is reported later, the crew comes back out, even if it turns out not to be their fault.
-- Owner on every job: ${site.owner.name} personally quotes every job, manages it, and returns a couple of weeks after completion to re-check the work.
+- Owner-led: every job is quoted on site by the owner, managed by the company's own crew, and re-checked a couple of weeks after completion.
 - Process: free on-site quote, 24 hours' confirmation before work begins, clean job site, owner quality check afterward.
 - Not a franchise or call center; the company deliberately limits how many jobs it takes.
 - Soffit & fascia: vinyl and aluminum, vented soffit available, for CMU (concrete block), wood-frame and mobile homes.
@@ -32,7 +32,7 @@ ${locations.map((l) => `- [${l.town}, FL](${U}/service-areas/${l.slug}): ${l.cou
 - Also serves Orange County and the greater Orlando area.
 
 ## Company
-- [About ${site.owner.name}](${U}/about)
+- [About ${site.name}](${U}/about)
 - [Reviews](${U}/reviews)
 - [Contact / free quote](${U}/contact-us)
 

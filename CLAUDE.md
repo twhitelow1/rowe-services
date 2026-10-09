@@ -7,7 +7,7 @@ Astro 7 static site (Node ≥ 22) on Vercel for an owner-operated gutter/exterio
 
 ## Rules
 - Content is data-driven: edit `src/data/*.ts` and `src/content/blog/*.md`, not templates.
-- Voice: first-person Justin Rowe, plain-spoken, no hype. Keep the USPs: owner-operated since 2013, owner quotes every job, 15-year warranty, follow-up check after the job, not a franchise.
+- Voice: company voice ("we"), plain-spoken, no hype. No personal branding: the owner's name appears only on /about (founder line) and in schema (founder). Keep the USPs: owner-operated since 2013, owner quotes every job, 15-year warranty, follow-up check after the job, not a franchise. Enforced by the "company voice" test in `tests/build.test.mjs`.
 - Never invent reviews, prices, stats, licenses or guarantees. Reviews in `site.ts` are verbatim.
 - The lead survey embed in `src/data/lead-form.html` is rendered verbatim — don't rewrite it.
 - Canonicals/schema always use `https://rowe-services.com`. Indexing only when `PUBLIC_SITE_INDEXABLE=true` (production only).

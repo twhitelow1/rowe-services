@@ -44,7 +44,7 @@ const schema = [webPage(path, l.title, l.description), breadcrumbs(crumbs), loca
       <div><dt>County</dt><dd>{l.county} County, FL</dd></div>
       <div><dt>ZIP codes</dt><dd>{l.zips.join(', ')}</dd></div>
       <div><dt>Warranty</dt><dd>15 years on installs</dd></div>
-      <div><dt>Quoted by</dt><dd>{site.owner.name}, owner</dd></div>
+      <div><dt>Quoted by</dt><dd>The owner, on site</dd></div>
     </dl>
   </div>
 
@@ -98,7 +98,7 @@ const schema = [webPage(path, l.title, l.description), breadcrumbs(crumbs), loca
   <section class="section sand">
     <div class="wrap narrow">
       <Faq faqs={l.faqs} heading={`${l.town} FAQ`} />
-      <p class="updated">Reviewed by {site.owner.name}, owner · Updated {fmtDate(new Date(site.lastReviewed))}</p>
+      <p class="updated">Reviewed by the {site.shortName} team · Updated {fmtDate(new Date(site.lastReviewed))}</p>
     </div>
   </section>
   <CtaBand heading={`Get a straight answer for your ${l.town} home`} />

@@ -78,7 +78,7 @@ const schema = [webPage(path, s.title, s.description), breadcrumbs(crumbs), serv
         <ul class="checklist">{s.includes.map((x) => <li><Icon name="check" />{x}</li>)}</ul>
 
         <h2 id="pricing">What affects the price</h2>
-        <p>Every home is different, so I quote on site instead of guessing over the phone. These are the things that move the number:</p>
+        <p>Every home is different, so we quote on site instead of guessing over the phone. These are the things that move the number:</p>
         <div class="table-scroll">
           <table class="data">
             <thead><tr><th scope="col">Factor</th><th scope="col">Why it matters</th></tr></thead>
@@ -124,7 +124,7 @@ const schema = [webPage(path, s.title, s.description), breadcrumbs(crumbs), serv
   <section class="section sand">
     <div class="wrap narrow">
       <Faq faqs={s.faqs} heading={`${s.name} FAQ`} />
-      <p class="updated">Reviewed by {site.owner.name}, owner · Updated {fmtDate(new Date(site.lastReviewed))}</p>
+      <p class="updated">Reviewed by the {site.shortName} team · Updated {fmtDate(new Date(site.lastReviewed))}</p>
     </div>
   </section>
 

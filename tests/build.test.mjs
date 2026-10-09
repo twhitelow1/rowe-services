@@ -140,6 +140,20 @@ describe('conversion elements', () => {
   });
 });
 
+describe('company voice (no personal branding)', () => {
+  const visible = (h) => (h.match(/<body[\s\S]*<\/body>/)?.[0] ?? '').replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&#39;/g, "'");
+  test('the owner is named only on the About page', () => {
+    for (const [u, h] of pages) if (u !== '/about') assert.ok(!/Justin/.test(visible(h)), `${u} names the owner in visible copy`);
+  });
+  test('site copy is not written in the first person singular', () => {
+    for (const [u, h] of pages) {
+      if (/^\/blogs\/./.test(u)) continue; // migrated posts are kept verbatim
+      const hit = visible(h).match(/[^.]{0,40}\bI'(m|ll|ve)\b[^.]{0,40}/);
+      assert.ok(!hit, `${u}: "${hit?.[0]}"`);
+    }
+  });
+});
+
 describe('preview gating (PUBLIC_SITE_INDEXABLE unset)', () => {
   test('every page is noindex', () => { for (const [u, h] of pages) assert.equal(meta(h, 'robots'), 'noindex, nofollow', u); });
   test('robots.txt disallows everything', () => assert.equal(readText(dir, 'robots.txt').trim(), 'User-agent: *\nDisallow: /'));

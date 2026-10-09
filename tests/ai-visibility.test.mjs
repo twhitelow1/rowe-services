@@ -8,6 +8,8 @@ import { SITE, distDir, loadPages, readText, jsonLd } from './helpers.mjs';
 const CONFIG = {
   orgId: `${SITE}/#organization`,
   ownerId: `${SITE}/about#justin-rowe`,
+  // Company voice: pages are reviewed and posts authored by the business, not a person.
+  reviewerId: `${SITE}/#organization`,
   businessName: 'Rowe Services & Maintenance',
   phone: '(352) 706-8913',
   primaryArea: 'Florida',
@@ -40,12 +42,14 @@ describe('entity: one complete, consistent business entity', () => {
     const ref = JSON.stringify(nodes(pages.get('/')).find((n) => n['@id'] === CONFIG.orgId));
     for (const [u, h] of pages) assert.equal(JSON.stringify(nodes(h).find((n) => n['@id'] === CONFIG.orgId)), ref, u);
   });
-  test('the founder/owner is a Person entity linked from the business and the About page', () => {
+  test('the About page is about the business, and the founder is a Person linked to it', () => {
     const h = pages.get('/about');
+    assert.equal(ofType(h, 'AboutPage')[0]?.mainEntity?.['@id'], CONFIG.orgId);
+    const org = nodes(h).find((n) => n['@id'] === CONFIG.orgId);
+    assert.equal(org.founder['@id'], CONFIG.ownerId);
     const person = nodes(h).find((n) => n['@id'] === CONFIG.ownerId);
     assert.equal(person?.['@type'], 'Person');
     assert.equal(person.worksFor['@id'], CONFIG.orgId);
-    assert.equal(ofType(h, 'AboutPage')[0]?.mainEntity?.['@id'], CONFIG.ownerId);
   });
   test('every @id reference resolves to a node on the same page', () => {
     for (const [u, h] of pages) {
@@ -75,7 +79,7 @@ describe('freshness and authorship (E-E-A-T)', () => {
       if (u === '/404') continue;
       assert.ok(wp, `${u} WebPage node`);
       assert.match(wp.dateModified, /^\d{4}-\d{2}-\d{2}$/, u);
-      assert.equal(wp.reviewedBy?.['@id'], CONFIG.ownerId, u);
+      assert.equal(wp.reviewedBy?.['@id'], CONFIG.reviewerId, u);
     }
   });
   test('money pages show a visible "Reviewed by … Updated …" line', () => {
@@ -86,7 +90,7 @@ describe('freshness and authorship (E-E-A-T)', () => {
       if (!CONFIG.posts.test(u)) continue;
       const a = ofType(h, 'BlogPosting')[0];
       assert.ok(a, `${u} BlogPosting`);
-      assert.equal(a.author['@id'], CONFIG.ownerId, u);
+      assert.equal(a.author['@id'], CONFIG.reviewerId, u);
       assert.equal(a.publisher['@id'], CONFIG.orgId, u);
       assert.match(a.datePublished, /^\d{4}-\d{2}-\d{2}$/, u);
       assert.ok(a.dateModified && a.headline && a.mainEntityOfPage, u);

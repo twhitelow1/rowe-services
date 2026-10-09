@@ -21,10 +21,10 @@ const checks = [
   'Whether gutter guards make sense for your trees',
 ];
 const faqs = [
-  { q: 'Is the gutter inspection really free?', a: 'Yes. There is no charge and no obligation. If everything looks good, I will tell you that.' },
-  { q: 'Who does the inspection?', a: `${site.owner.name}, the owner. You won't get a sales rep.` },
-  { q: 'Do I have to be home?', a: "It helps, so I can show you what I find and answer questions, but we can work around your schedule." },
-  { q: 'What if you find a problem?', a: 'I explain what is going on, what it would take to fix, and give you a clear written price. Whether to go ahead is entirely up to you.' },
+  { q: 'Is the gutter inspection really free?', a: 'Yes. There is no charge and no obligation. If everything looks good, we\'ll tell you that.' },
+  { q: 'Who does the inspection?', a: "The owner. You won't get a sales rep." },
+  { q: 'Do I have to be home?', a: "It helps, so we can show you what we find and answer questions, but we can work around your schedule." },
+  { q: 'What if you find a problem?', a: 'We explain what is going on, what it would take to fix, and give you a clear written price. Whether to go ahead is entirely up to you.' },
 ];
 const schema = [webPage(path, title, description), breadcrumbs(crumbs), faqPage(faqs, path)];
 ---
@@ -35,11 +35,11 @@ const schema = [webPage(path, title, description), breadcrumbs(crumbs), faqPage(
         <Breadcrumbs items={crumbs} />
         <span class="eyebrow" style="color:#f0a868">Free · No obligation</span>
         <h1>Free gutter & drainage inspection</h1>
-        <p class="lede">Before the next storm, have the owner check how your home handles water. I'll walk the roofline and drainage with you and tell you straight what — if anything — needs attention.</p>
+        <p class="lede">Before the next storm, have us check how your home handles water. We'll walk the roofline and drainage with you and tell you straight what — if anything — needs attention.</p>
         <ul class="hero-checks">{checks.map((c) => <li><Icon name="check-circle" />{c}</li>)}</ul>
         <a class="btn btn-ghost-light btn-lg" href={telHref}><Icon name="phone" />Or call {site.phone}</a>
       </div>
-      <LeadSurvey heading="Book my free inspection" sub="Fill this out and I'll call you back personally to set a time." />
+      <LeadSurvey heading="Book my free inspection" sub="Fill this out and we'll call you back to set a time." />
     </div>
   </section>
   <section class="section"><div class="wrap narrow"><Faq faqs={faqs} heading="Free inspection FAQ" /></div></section>

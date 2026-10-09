@@ -30,7 +30,7 @@ const schema = [webPage(path, p.data.title, p.data.description), breadcrumbs(cru
       <Breadcrumbs items={crumbs} />
       {svc && <span class="eyebrow" style="color:#f0a868">{svc.name}</span>}
       <h1 style="max-width:28ch">{p.data.title}</h1>
-      <p class="byline"><span>By <strong>{site.owner.name}</strong>, owner of {site.name}</span><time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time></p>
+      <p class="byline"><span>By the <strong>{site.name}</strong> team</span><time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time></p>
     </div>
   </section>
   <section class="section">
@@ -38,8 +38,8 @@ const schema = [webPage(path, p.data.title, p.data.description), breadcrumbs(cru
       <article class="prose narrow">
         <Content />
         <div class="card mt-2">
-          <h2 style="font-size:1.35rem">Want me to take a look?</h2>
-          <p>I'm Justin Rowe. I'll walk your property, tell you straight what's going on, and give you an honest, no-obligation price. Every install is backed for 15 years.</p>
+          <h2 style="font-size:1.35rem">Want us to take a look?</h2>
+          <p>We'll walk your property, tell you straight what's going on, and give you an honest, no-obligation price. Every install is backed for 15 years.</p>
           <div class="btn-row"><a class="btn btn-primary" href="#quote">Get my free quote</a><a class="btn btn-outline" href={telHref}><Icon name="phone" />{site.phone}</a></div>
         </div>
       </article>

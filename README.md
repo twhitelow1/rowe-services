@@ -59,5 +59,6 @@ The official Rowe Service's logo is rebuilt as vector paths in `src/data/logo.ts
 11. Florida contractor license number, if Rowe wants it shown.
 
 ## Build log
+- 2026-10-09 — Toned down personal branding: copy moved from Justin's first person to company voice; owner named only on /about and as schema founder. Bylines/reviewer now the business. Added a company-voice test.
 - 2026-10-08 — Added CI (GitHub Actions) with unit, build, AI-visibility, SEO-audit, production and Playwright tests. Official logo + R favicon. Extra schema: contactPoint, ItemList hubs, AboutPage→Person, BlogPosting about/mentions. 4th FAQ on every town page.
 - 2026-10-06 — Full rebuild. Scaffolded from the DubLow reference architecture (vail-valley-it). Migrated 26 blog posts + privacy policy. Wrote 4 service pages, 14 town pages, about, reviews, contact, free-inspection landing page. SEO audit: 0 issues across 55 pages. Desktop (1280) + mobile (390) screenshots checked; no horizontal overflow.
