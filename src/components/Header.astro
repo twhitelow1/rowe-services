@@ -1,0 +1,62 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { services } from '../data/services';
+import { locations } from '../data/locations';
+import { site, telHref, quoteHref } from '../data/site';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const cur = (p: string) => (path === p ? 'page' : undefined);
+---
+<a class="skip" href="#main">Skip to content</a>
+<div class="topbar">
+  <div class="wrap">
+    <span><Icon name="shield" size={16} /> 15-year warranty · Owner-operated since {site.founded}</span>
+    <span class="topbar-areas"><Icon name="pin" size={16} /> The Villages · Lake · Marion · Sumter · Orange County</span>
+  </div>
+</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label={`${site.name} home`}><Logo /></a>
+    <nav class="nav" aria-label="Main">
+      <div class="dd">
+        <a href="/services" aria-current={cur('/services')}>Services <Icon name="chevron" /></a>
+        <div class="dd-panel">
+          {services.map((s) => (
+            <a href={`/services/${s.slug}`} aria-current={cur(`/services/${s.slug}`)}><Icon name={s.icon} /> {s.name}</a>
+          ))}
+          <a class="all" href="/free-gutter-inspection">Free gutter & drainage inspection</a>
+        </div>
+      </div>
+      <div class="dd">
+        <a href="/service-areas" aria-current={cur('/service-areas')}>Service Areas <Icon name="chevron" /></a>
+        <div class="dd-panel dd-cols">
+          {locations.map((l) => <a href={`/service-areas/${l.slug}`} aria-current={cur(`/service-areas/${l.slug}`)}>{l.town}, FL</a>)}
+          <a class="all" href="/service-areas">All service areas</a>
+        </div>
+      </div>
+      <a href="/about" aria-current={cur('/about')}>About</a>
+      <a href="/reviews" aria-current={cur('/reviews')}>Reviews</a>
+      <a href="/blogs" aria-current={cur('/blogs')}>Blog</a>
+      <a href="/contact-us" aria-current={cur('/contact-us')}>Contact</a>
+    </nav>
+    <div class="header-cta">
+      <a class="hdr-phone" href={telHref} data-track="call_click"><Icon name="phone" /><span><small>Call or text</small>{site.phone}</span></a>
+      <a class="btn btn-primary" href={quoteHref} data-track="quote_click">Free Quote</a>
+    </div>
+    <details class="mobile-nav">
+      <summary aria-label="Open menu"><Icon name="menu" size={28} /></summary>
+      <div class="mnav-panel">
+        <a href="/services">All services</a>
+        {services.map((s) => <a class="sub" href={`/services/${s.slug}`}>{s.name}</a>)}
+        <a href="/service-areas">Service areas</a>
+        <a href="/free-gutter-inspection">Free gutter inspection</a>
+        <a href="/about">About us</a>
+        <a href="/reviews">Reviews</a>
+        <a href="/blogs">Blog</a>
+        <a href="/contact-us">Contact</a>
+        <a class="btn btn-primary btn-block" href={quoteHref}>Get my free quote</a>
+        <a class="btn btn-outline btn-block" href={telHref}><Icon name="phone" />Call {site.phone}</a>
+      </div>
+    </details>
+  </div>
+</header>

@@ -1,0 +1,46 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { services } from '../data/services';
+import { locations } from '../data/locations';
+import { site, telHref } from '../data/site';
+const year = new Date(site.lastReviewed).getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <Logo variant="stacked" class="logo logo-stacked" />
+      <p>Owner-operated seamless gutters, soffit & fascia, vinyl siding and screen enclosures for Central Florida homes since {site.founded}. Every job quoted and checked by the owner, and backed for 15 years.</p>
+      <p class="nap">
+        <strong>{site.legalName}</strong><br />
+        {site.address.locality}, {site.address.region} {site.address.postalCode}<br />
+        <a href={telHref}>{site.phone}</a>{site.email && <><br /><a href={`mailto:${site.email}`}>{site.email}</a></>}
+      </p>
+      <p class="hours"><span>Mon–Fri: 9am–6pm</span><span>Saturday: 10am–6pm</span></p>
+      <a class="social" href={site.facebook} rel="noopener" aria-label="Rowe Services on Facebook"><Icon name="facebook" /> Facebook</a>
+    </div>
+    <nav aria-label="Services">
+      <h3>Services</h3>
+      {services.map((s) => <a href={`/services/${s.slug}`}>{s.name}</a>)}
+      <a href="/free-gutter-inspection">Free gutter inspection</a>
+      <a href="/services">All services</a>
+    </nav>
+    <nav aria-label="Service areas" class="footer-areas">
+      <h3>Service areas</h3>
+      {locations.map((l) => <a href={`/service-areas/${l.slug}`}>{l.town}</a>)}
+    </nav>
+    <nav aria-label="Company">
+      <h3>Company</h3>
+      <a href="/about">About us</a>
+      <a href="/reviews">Reviews</a>
+      <a href="/blogs">Blog</a>
+      <a href="/contact-us">Contact us</a>
+      <a href="/privacy-policy">Privacy policy</a>
+      <a href="/terms-and-conditions">Terms & conditions</a>
+    </nav>
+  </div>
+  <div class="wrap footer-base">
+    <span>© {year} {site.legalName}. All rights reserved.</span>
+    <span>Serving {site.counties.join(', ').replace(/, ([^,]*)$/, ' & $1')}, FL</span>
+  </div>
+</footer>

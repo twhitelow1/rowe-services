@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+import { services } from '../data/services';
+interface Props { exclude?: string; town?: string; order?: string[] }
+const { exclude, town, order } = Astro.props;
+let list = services.filter((s) => s.slug !== exclude);
+if (order) list = order.map((o) => list.find((s) => s.slug === o)!).filter(Boolean);
+---
+<div class="svc-grid">
+  {list.map((s) => (
+    <article class="svc-card">
+      <span class="svc-icon"><Icon name={s.icon} size={30} /></span>
+      <h3><a href={`/services/${s.slug}`}>{town ? `${s.name} in ${town}` : s.name}</a></h3>
+      <p>{s.card}</p>
+      <span class="more">See {s.short.toLowerCase()} <Icon name="arrow" size={16} /></span>
+    </article>
+  ))}
+</div>

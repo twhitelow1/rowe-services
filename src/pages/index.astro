@@ -1,0 +1,189 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Logo from '../components/Logo.astro';
+import HeroArt from '../components/HeroArt.astro';
+import LeadSurvey from '../components/LeadSurvey.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import Faq from '../components/Faq.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, telHref, quoteHref, yearsInBusiness } from '../data/site';
+import { services } from '../data/services';
+import { locations } from '../data/locations';
+import { allPosts, fmtDate } from '../lib/blog';
+import { webPage, faqPage } from '../lib/schema';
+
+const title = 'Seamless Gutters & Exterior Services in The Villages, FL | Rowe';
+const description = 'Owner-operated since 2013: 6" seamless gutters, soffit & fascia, vinyl siding and screen enclosures in The Villages & Central FL. 15-year warranty. Free quote.';
+const posts = (await allPosts()).slice(0, 3);
+const counties = ['Lake', 'Marion', 'Sumter'] as const;
+
+const faqs = [
+  { q: 'Who actually shows up to quote my job?', a: "The owner. Every quote is done on site by the owner of the company, from the first visit to the final walkthrough. You won't get passed to a sales rep." },
+  { q: "What's your warranty?", a: "15 years. It's longer than most because our sealant process has earned it. If a leak shows up down the road, we come back out — even if it's not our fault." },
+  { q: "What happens if something leaks or isn't right after you leave?", a: 'You call us. We come back and take care of it. No fine print, no "that\'s out of scope."' },
+  { q: 'When do you check back in after the job is done?', a: "We check the job at completion and then again a couple of weeks after we finish to double-check the work. Anything we're not satisfied with, we fix." },
+  { q: 'Who installs seamless gutters in The Villages, FL?', a: 'Rowe Services & Maintenance, an owner-operated company based in Grand Island, FL, installs 6" seamless aluminum K-style gutters in The Villages and throughout Lake, Marion, Sumter and Orange County. Every install is quoted by the owner and backed by a 15-year warranty.' },
+  { q: "What's the right gutter size for heavy Florida rain?", a: "It depends on your roof area, pitch and downspout layout. We'll walk it with you and tell you straight what your home actually needs." },
+  { q: 'Can you replace soffit and fascia at the same time as the gutters?', a: "Yes, and it's usually the right call. The fascia supports the gutters, so handling both together means cleaner results and a longer-lasting system." },
+  { q: 'Do you repair storm or water damage?', a: "Yes. Send photos or book a free on-site inspection and we'll tell you what we're actually looking at." },
+  { q: 'How do I get started?', a: "Fill out the quote form or call us at " + site.phone + ". We'll come walk the property, listen to what you're trying to solve, and give you a clear plan and price." },
+];
+const schema = [webPage('/', title, description), faqPage(faqs, '/')];
+---
+<Base title={title} description={description} path="/" schema={schema}>
+  <section class="hero">
+    <HeroArt />
+    <div class="wrap">
+      <div class="hero-inner">
+        <span class="eyebrow" style="color:#f0a868">Owner-operated since {site.founded}</span>
+        <h1>Seamless gutters & exterior services in <span class="hl">The Villages, FL</span></h1>
+        <p class="lede">Every job is quoted on site by the owner, installed right the first time by our own crew, and backed for <strong style="color:#fff">15 years</strong>. Serving The Villages and Lake, Marion, Sumter and Orange County homeowners.</p>
+        <ul class="hero-checks">
+          <li><Icon name="check-circle" />6" seamless aluminum K-style gutters — one continuous piece, far fewer leak points</li>
+          <li><Icon name="check-circle" />One point of contact from the first call to the final walkthrough</li>
+          <li><Icon name="check-circle" />24 hours' confirmation before we start, clean job site when we leave</li>
+          <li><Icon name="check-circle" />We come back a couple of weeks later and check the work</li>
+        </ul>
+        <div class="btn-row">
+          <a class="btn btn-primary btn-lg" href="#quote" data-track="quote_click">Get my free quote <Icon name="arrow" /></a>
+          <a class="btn btn-outline btn-lg" href={telHref} data-track="call_click"><Icon name="phone" />{site.phone}</a>
+        </div>
+        <div class="hero-proof">
+          <span class="proof-pill"><Icon name="shield" />15-year warranty</span>
+          <span class="proof-pill"><Icon name="user" />{yearsInBusiness}+ years, not a franchise</span>
+          <span class="proof-pill"><Icon name="pin" />Local to Lake County</span>
+        </div>
+      </div>
+      <LeadSurvey />
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Why Rowe">
+    <div class="wrap">
+      <div class="trust-item"><Icon name="shield" /><div><strong>15-year warranty</strong><span>Most offer 1–5 years</span></div></div>
+      <div class="trust-item"><Icon name="user" /><div><strong>Owner-quoted</strong><span>No sales reps, ever</span></div></div>
+      <div class="trust-item"><Icon name="gutter" /><div><strong>6" seamless K-style</strong><span>Formed on site</span></div></div>
+      <div class="trust-item"><Icon name="handshake" /><div><strong>Since {site.founded}</strong><span>Not a franchise</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What we handle</span>
+        <h2>Gutters, soffit & fascia, siding and screen porches — built for Florida weather</h2>
+        <p class="lede">Rowe Services & Maintenance installs and repairs seamless gutters, soffit and fascia, vinyl siding and screen enclosures for homes across Lake, Marion, Sumter and Orange County. Honest pricing, a straight answer, and work built to hold up to Central Florida rain, sun and wind.</p>
+      </div>
+      <ServiceCards />
+      <p class="mt-2"><a class="more" href="/free-gutter-inspection">Not sure what you need? Book a free gutter & drainage inspection <Icon name="arrow" size={16} /></a></p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Why homeowners choose Rowe</span>
+        <h2>We're not a franchise and we don't chase volume</h2>
+        <p>We deliberately limit the jobs we take so every homeowner gets the owner — and the quality that comes with that.</p>
+      </div>
+      <div class="usp-grid">
+        {site.usps.map((u) => (
+          <div class="usp"><Icon name={u.icon} /><h3>{u.title}</h3><p>{u.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap owner">
+      <div class="owner-card">
+        <Logo variant="mark" class="owner-mark" />
+        <h3>{site.name}</h3>
+        <p class="mb-0">Locally owned and operated</p>
+        <dl>
+          <dt>In business</dt><dd>Since {site.founded}</dd>
+          <dt>Based in</dt><dd>{site.address.locality}, FL</dd>
+          <dt>Warranty</dt><dd>15 years on installs</dd>
+          <dt>Call or text</dt><dd><a href={telHref} style="color:#fff">{site.phone}</a></dd>
+        </dl>
+      </div>
+      <div>
+        <span class="eyebrow">Local and owner-operated</span>
+        <h2>A local company that stands behind its work</h2>
+        <p>Rowe Services & Maintenance has installed seamless gutters and exterior work for homeowners in Lake, Marion, Sumter and Orange County since {site.founded}. We put a 15-year warranty on every install because our sealant process holds up in Florida rain.</p>
+        <p>Whether you're in The Villages, Wildwood, Leesburg, Mount Dora or the greater Orlando area, here's what you can expect:</p>
+        <ul class="owner-promise">
+          <li><Icon name="check-circle" />One point of contact, start to finish</li>
+          <li><Icon name="check-circle" />24 hours' confirmation before work begins</li>
+          <li><Icon name="check-circle" />A clean job site, every day</li>
+          <li><Icon name="check-circle" />A quality check after we're done. If something isn't right, we come back. Period.</li>
+        </ul>
+        <a class="btn btn-primary" href={quoteHref}>Request your free estimate</a>
+        <a class="more" style="margin-left:1rem" href="/about">More about us <Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section sand">
+    <div class="wrap">
+      <div class="review-hero">
+        <span class="eyebrow">What your neighbors are saying</span>
+        <ReviewCard {...site.reviews[0]} />
+        <p class="mt-2"><a class="more" href="/reviews">Read more reviews <Icon name="arrow" size={16} /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="service-areas">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Service areas</span>
+        <h2>Serving The Villages and Central Florida since {site.founded}</h2>
+        <p>Based in Grand Island, we work throughout Lake, Marion and Sumter County, plus the greater Orlando area in Orange County. Pick your town for local details.</p>
+      </div>
+      <div class="area-cols">
+        {counties.map((c) => (
+          <div class="area-col card">
+            <h3>{c} County</h3>
+            <ul>
+              {locations.filter((l) => l.county === c).map((l) => (
+                <li><a href={`/service-areas/${l.slug}`}>{l.town}<span>{l.zips[0]}</span></a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="note mt-2">Also serving Orange County and the greater Orlando area — <a href="/contact-us">ask about your address</a>.</p>
+    </div>
+  </section>
+
+  <section class="section sky">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">From the blog</span>
+        <h2>Straight answers about Florida gutters and exteriors</h2>
+      </div>
+      <div class="post-grid">
+        {posts.map((p) => (
+          <article class="post-card">
+            <span class="tag">{services.find((s) => s.slug === p.data.service)?.short ?? 'Home tips'}</span>
+            <h3><a href={`/blogs/${p.id}`}>{p.data.title}</a></h3>
+            <p>{p.data.description}</p>
+            <time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time>
+          </article>
+        ))}
+      </div>
+      <p class="mt-2"><a class="more" href="/blogs">See all articles <Icon name="arrow" size={16} /></a></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap narrow">
+      <Faq faqs={faqs} heading="Frequently asked questions about gutters, siding & exterior work in Central Florida" />
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

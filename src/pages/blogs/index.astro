@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { services } from '../../data/services';
+import { allPosts, fmtDate } from '../../lib/blog';
+import { webPage, breadcrumbs } from '../../lib/schema';
+import { site } from '../../data/site';
+
+const path = '/blogs';
+const title = 'Gutter, Siding & Exterior Tips for Central Florida | Rowe Blog';
+const description = 'Practical advice on seamless gutters, soffit & fascia, vinyl siding and screen enclosures for Central Florida homes, from the Rowe Services & Maintenance team.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Blog', path }];
+const posts = await allPosts();
+const schema = [
+  webPage(path, title, description, 'CollectionPage'),
+  breadcrumbs(crumbs),
+  { '@type': 'Blog', '@id': `${site.url}/blogs#blog`, name: `${site.name} blog`, url: `${site.url}/blogs`, publisher: { '@id': `${site.url}/#organization` }, blogPost: posts.map((p) => ({ '@id': `${site.url}/blogs/${p.id}#article` })) },
+];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      <h1>Gutter & exterior advice for Central Florida homes</h1>
+      <p class="lede">Straight answers about gutters, drainage, soffit and fascia, siding and screen enclosures — written for homeowners in The Villages and across Lake, Marion and Sumter County.</p>
+    </div>
+  </section>
+  {services.map((s) => {
+    const list = posts.filter((p) => p.data.service === s.slug);
+    return list.length > 0 && (
+      <section class="section" id={s.slug} style="padding-block:2.5rem">
+        <div class="wrap">
+          <div class="section-head" style="margin-bottom:1.25rem"><h2>{s.name}</h2><p class="mb-0"><a href={`/services/${s.slug}`}>See our {s.name.toLowerCase()} service</a></p></div>
+          <div class="post-grid">
+            {list.map((p) => (
+              <article class="post-card">
+                <h3><a href={`/blogs/${p.id}`}>{p.data.title}</a></h3>
+                <p>{p.data.description}</p>
+                <time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+  <CtaBand />
+</Base>

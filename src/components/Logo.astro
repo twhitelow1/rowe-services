@@ -1,0 +1,38 @@
+---
+// Official Rowe Service's logo (open ring + R mark, "ROWE SERVICE'S / SEAMLESS GUTTERS & MORE").
+// Pure inline SVG paths from src/data/logo.ts: crisp at any size, no image or font request.
+// variant: 'horizontal' (header) | 'stacked' (official layout) | 'mark' (R icon only)
+import { mark, wordTop, wordSub } from '../data/logo';
+interface Props { variant?: 'horizontal' | 'stacked' | 'mark'; class?: string; title?: string }
+const { variant = 'horizontal', class: cls = 'logo', title = "Rowe Service's — Seamless Gutters & More" } = Astro.props;
+const capTop = -wordTop.top; // cap height at size 100
+// Horizontal: mark (532 units square) + two-line wordmark sized so both lines share one width.
+const hS1 = 190 / capTop, hW = wordTop.width * hS1, hS2 = hW / wordSub.width;
+const hView = `0 0 ${Math.ceil(620 + hW)} 532`;
+// Stacked: official 1024 layout.
+const sS1 = 915 / wordTop.width, sS2 = 885 / wordSub.width;
+---
+{variant === 'mark' && (
+  <svg class={cls} viewBox={mark.viewBox} role="img" aria-label={title}>
+    <path d={mark.ring} fill="none" stroke="currentColor" stroke-width={mark.ringWidth} />
+    <path d={mark.r} fill="currentColor" />
+  </svg>
+)}
+{variant === 'horizontal' && (
+  <svg class={cls} viewBox={hView} role="img" aria-label={title}>
+    <g transform="translate(-239 -104)">
+      <path d={mark.ring} fill="none" stroke="currentColor" stroke-width={mark.ringWidth} />
+      <path d={mark.r} fill="currentColor" />
+    </g>
+    <path transform={`translate(620 262) scale(${hS1.toFixed(4)})`} d={wordTop.d} fill="currentColor" />
+    <path transform={`translate(620 438) scale(${hS2.toFixed(4)})`} d={wordSub.d} fill="currentColor" />
+  </svg>
+)}
+{variant === 'stacked' && (
+  <svg class={cls} viewBox="40 90 944 800" role="img" aria-label={title}>
+    <path d={mark.ring} fill="none" stroke="currentColor" stroke-width={mark.ringWidth} />
+    <path d={mark.r} fill="currentColor" />
+    <path transform={`translate(${((1024 - 915) / 2).toFixed(1)} 785) scale(${sS1.toFixed(4)})`} d={wordTop.d} fill="currentColor" />
+    <path transform={`translate(${((1024 - 885) / 2).toFixed(1)} 873) scale(${sS2.toFixed(4)})`} d={wordSub.d} fill="currentColor" />
+  </svg>
+)}

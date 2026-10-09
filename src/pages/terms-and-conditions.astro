@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { webPage, breadcrumbs } from '../lib/schema';
+import { site } from '../data/site';
+const path = '/terms-and-conditions';
+const title = 'Terms & Conditions (SMS) | Rowe Services & Maintenance';
+const description = 'SMS messaging terms for Rowe Services & Maintenance, LLC: message frequency, how to opt out with STOP, help instructions, carrier disclaimer and privacy.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'Terms & Conditions', path }];
+---
+<Base title={title} description={description} path={path} schema={[webPage(path, title, description), breadcrumbs(crumbs)]}>
+  <section class="page-hero"><div class="wrap"><Breadcrumbs items={crumbs} /><h1>Terms & conditions</h1></div></section>
+  <section class="section">
+    <div class="wrap prose narrow">
+      <p>By providing your mobile number and opting in through our website or contact forms, you agree to receive SMS messages from <strong>{site.legalName}</strong> regarding your appointments, service updates, estimates, and promotional content.</p>
+      <h2>Message frequency</h2>
+      <p>Message frequency will vary based on your interactions with us. You can typically expect <strong>1–4 messages per month</strong>.</p>
+      <h2>Opt-out</h2>
+      <p>You may opt out of receiving SMS messages at any time by replying <strong>“STOP.”</strong> After you send “STOP,” we will send you one final confirmation message to confirm that you have been unsubscribed. You will no longer receive SMS messages from this line unless you opt in again.</p>
+      <h2>Help instructions</h2>
+      <p>For support or assistance, reply <strong>“HELP”</strong> to any message or contact us directly at <a href="mailto:team@roweservices.com">team@roweservices.com</a>.</p>
+      <h2>Carrier disclaimer</h2>
+      <p>Message and data rates may apply. Please check with your mobile carrier for details. Carriers are not liable for delayed or undelivered messages.</p>
+      <h2>Privacy</h2>
+      <p>Your privacy is important to us. Your data is handled securely and in accordance with our <a href="/privacy-policy">Privacy Policy</a>.</p>
+    </div>
+  </section>
+</Base>

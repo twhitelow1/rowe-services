@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+import { site, telHref, quoteHref } from '../data/site';
+interface Props { heading?: string; text?: string }
+const { heading = 'Ready for a straight answer and an honest price?', text = "Request your free quote and we'll call you back. No sales reps, no call center, no pressure." } = Astro.props;
+---
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>{heading}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-primary btn-lg" href={quoteHref} data-track="quote_click">Get my free quote <Icon name="arrow" /></a>
+      <a class="btn btn-ghost-light btn-lg" href={telHref} data-track="call_click"><Icon name="phone" />{site.phone}</a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Logo from '../components/Logo.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ReviewCard from '../components/ReviewCard.astro';
+import TownChips from '../components/TownChips.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, telHref, quoteHref, yearsInBusiness } from '../data/site';
+import { services } from '../data/services';
+import { webPage, breadcrumbs, ORG_ID } from '../lib/schema';
+
+const path = '/about';
+const title = 'About Rowe Services & Maintenance | Since 2013';
+const description = 'Rowe Services & Maintenance is a locally owned exterior company in Grand Island, FL. Owner-operated since 2013, every install backed for 15 years.';
+const crumbs = [{ name: 'Home', path: '/' }, { name: 'About', path }];
+const schema = [webPage(path, title, description, 'AboutPage', { mainEntity: { '@id': ORG_ID } }), breadcrumbs(crumbs)];
+---
+<Base title={title} description={description} path={path} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <Breadcrumbs items={crumbs} />
+      <span class="eyebrow" style="color:#f0a868">About Rowe Services</span>
+      <h1>Locally owned and operated since {site.founded}</h1>
+      <p class="lede">Rowe Services & Maintenance is a locally owned, owner-operated exterior company in {site.address.locality}, Florida. We're not a franchise, we're not a call center, and we don't chase volume.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap owner" id="justin-rowe">
+      <div class="owner-card">
+        <Logo variant="mark" class="owner-mark" />
+        <h3>{site.name}</h3>
+        <p class="mb-0">Locally owned and operated</p>
+        <dl>
+          <dt>Founded</dt><dd>{site.founded} ({yearsInBusiness}+ years)</dd>
+          <dt>Home base</dt><dd>{site.address.locality}, FL</dd>
+          <dt>Counties</dt><dd>Lake, Marion, Sumter, Orange</dd>
+          <dt>Warranty</dt><dd>15 years on installs</dd>
+        </dl>
+      </div>
+      <div class="prose">
+        <h2>Who we are</h2>
+        <p>Rowe Services & Maintenance was founded in {site.founded} by {site.owner.name} and has been installing seamless gutters and doing exterior work for homeowners in Lake, Marion, Sumter and Orange County ever since. Every install carries a 15-year warranty, because our sealant process holds up in Florida rain.</p>
+        <p>We install 6" aluminum seamless K-style gutters: one continuous piece, no sectional joints, far fewer places a leak can start. Alongside gutters, we install soffit and fascia, handle vinyl siding start to finish, and build and repair screen enclosures.</p>
+        <p>We deliberately limit the jobs we take so every project gets the owner's attention, and the quality that comes with that. Every job is quoted on site, managed by the owner and followed up after the crew leaves. You get one point of contact from the first call to the final walkthrough.</p>
+        <!-- TODO: add real photos of the crew, trucks and finished projects. -->
+      </div>
+    </div>
+  </section>
+  <section class="section band">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">How we work</span><h2>Four promises on every job</h2></div>
+      <div class="usp-grid">{site.usps.map((u) => <div class="usp"><Icon name={u.icon} /><h3>{u.title}</h3><p>{u.text}</p></div>)}</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap split">
+      <div>
+        <h2>What we do</h2>
+        <ul class="checklist">{services.map((s) => <li><Icon name="check-circle" /><span><a href={`/services/${s.slug}`}><strong>{s.name}</strong></a> — {s.card}</span></li>)}</ul>
+        <h2 class="mt-2">Where we work</h2>
+        <TownChips />
+      </div>
+      <div>
+        <ReviewCard {...site.reviews[0]} />
+        <div class="card mt-2">
+          <h3>Talk to us directly</h3>
+          <p>Call or text {site.phone}. Mon–Fri 9–6, Sat 10–6.</p>
+          <div class="btn-row"><a class="btn btn-primary" href={quoteHref}>Get my free quote</a><a class="btn btn-outline" href={telHref}><Icon name="phone" />Call now</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
