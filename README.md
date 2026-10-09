@@ -58,6 +58,9 @@ The official Rowe Service's logo is rebuilt as vector paths in `src/data/logo.ts
 10. **Blog claims to verify** (migrated verbatim from the old site): repaint cost ranges, foundation repair $5k–$30k, gutter cleaning $150–$300/visit, "90% fewer leak points", rainfall/attic temperature stats.
 11. Florida contractor license number, if Rowe wants it shown.
 
+## Launch
+See `docs/LAUNCH.md` for the cutover runbook (DNS changes, records to keep, post-launch checks, rollback).
+
 ## Build log
 - 2026-10-09 — Toned down personal branding: copy moved from Justin's first person to company voice; owner named only on /about and as schema founder. Bylines/reviewer now the business. Added a company-voice test.
 - 2026-10-08 — Added CI (GitHub Actions) with unit, build, AI-visibility, SEO-audit, production and Playwright tests. Official logo + R favicon. Extra schema: contactPoint, ItemList hubs, AboutPage→Person, BlogPosting about/mentions. 4th FAQ on every town page.
